@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --background-body: #fff;
+  --text-main: #36393b;
+  --text-secondary: #6b6f72;
+  --primary-color: #548e9b;
+  --dark-background-body: #202122;
+  --dark-text-main: #dfdfdf;
+  --dark-text-secondary: #ccc;
+}
+
+::selection {
+  background-color: var(--primary-color); /* Primary color */
+  color: var(--text-main); /* Primary light mode text color */
+}
+
+@layer base {
+  html {
+    font-family: Merriweather, serif;
+  }
+
+  /* latin */
+  @font-face {
+    font-family: "Fira Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../../public/assets/fonts/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Merriweather";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../../public/assets/fonts/u-440qyriQwlOrhSvowK_l5-fCZMdeX3rg.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Merriweather";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../../public/assets/fonts/u-4n0qyriQwlOrhSvowK_l52xwNZWMf6hPvhPQ.woff2)
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+}
+
+@layer components {
+  .navlink {
+    @apply relative block min-w-[70px] px-[5px] py-2.5 text-center text-inherit no-underline before:absolute before:left-0 before:bottom-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-text-secondary before:transition-transform before:duration-[0.3s] before:ease-[ease] before:content-[''] md:ml-5 hover:before:md:scale-x-100 [&:not(.selected)]:opacity-70 hover:[&:not(.selected)]:text-primary;
+  }
+
+  .selected {
+    @apply before:bg-primary before:md:scale-x-100 max-w-md:text-primary;
+  }
+
+  a::not(.selected):hover {
+    color: var(--primary-color);
+  }
+
+  a {
+    color: inherit;
+    transition: color linear 0.15s;
+  }
+
+  h2 a,
+  p a,
+  footer a,
+  .back-button {
+    text-decoration: none;
+    box-shadow: inset 0 -0.12em 0 var(--primary-color);
+    -webkit-transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+
+  h2 a:hover,
+  p a:hover,
+  footer a:hover,
+  .back-button:hover {
+    box-shadow: inset 0 -1.5em 0 var(--primary-color);
+    color: var(--text-main);
+  }
+
+  hr {
+    padding: 0;
+    border: 0;
+    height: 10px;
+    margin: 40px auto;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='20' height='10'  viewBox='0 0 20 10' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-miterlimit='10'%3e%3cpath fill='none' d='M0 0h20v10H0z'/%3e%3cclipPath id='a'%3e%3cpath d='M0 0h20v10H0z'/%3e%3c/clipPath%3e%3cg clip-path='url(%23a)'%3e%3cpath d='M20 7.384c-4.999-.001-5-4.768-9.999-4.768C5 2.616 5 7.384 0 7.384' fill='none' stroke-width='3' stroke='%23548E9B'/%3e%3c/g%3e%3c/svg%3e");
+  }
+}
