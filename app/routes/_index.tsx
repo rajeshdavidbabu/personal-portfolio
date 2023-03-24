@@ -1,33 +1,25 @@
 import { motion } from "framer-motion";
-import {
-  textVariants,
-  containerVariants,
-  imageLoadAnimationProps,
-} from "~/data/animationConfig";
+import StaggerParent from "~/components/StaggerParent";
+import StaggerChild from "~/components/StaggerChild";
+import { imageLoadAnimationProps } from "~/data/animationConfig";
 
 export default function Index() {
   return (
     <div className="mx-0 my-[2em] flex min-h-[400px] flex-[1] items-center justify-between max-w-md:flex-col-reverse">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="max-w-md:flex-[0 flex-[1] px-[1em] py-0 max-w-md:pb-[2em] max-w-md:text-center"
-      >
-        <motion.h1
-          variants={textVariants}
-          className="mb-[0.5em] text-2xl font-bold leading-[1.3] md:text-4xl"
-        >
+      <StaggerParent className="max-w-md:flex-[0 flex-[1] px-[1em] py-0 max-w-md:pb-[2em] max-w-md:text-center">
+        <h1 className="mb-[0.5em] text-2xl font-bold leading-[1.3] md:text-4xl">
           Hi there! I'm Raj.
-        </motion.h1>
-        <motion.p variants={textVariants} className="text-lg md:text-xl">
+        </h1>
+        <StaggerChild tag="p" className="text-lg md:text-xl">
           I'm a software engineering leader.
           <br />
           I like to write about Typescript, React, Node.js
           <br />
           and Software Architecture.
-          <br />
-          <br />
+        </StaggerChild>
+        <br />
+        <br />
+        <StaggerChild tag="p" className="text-lg md:text-xl">
           Do you like my template ?
           <br />
           Check out the codebase on{" "}
@@ -39,8 +31,8 @@ export default function Index() {
             GitHub
           </a>{" "}
           .
-        </motion.p>
-      </motion.div>
+        </StaggerChild>
+      </StaggerParent>
 
       <motion.div
         {...imageLoadAnimationProps}
