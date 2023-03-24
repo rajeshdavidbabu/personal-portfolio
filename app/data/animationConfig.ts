@@ -41,18 +41,22 @@ export const mobileNavExitProps = {
   exit: {
     opacity: 0,
     height: 0,
-    y: -20,
+
     transition: { duration: 0.2, ease: "easeIn" },
   },
 };
 
-export const logoRotationVariant = {
-  rotate: {
-    rotate: 360,
-    transition: {
-      repeat: Infinity,
-      duration: 20,
-      ease: "linear",
+export const logoLoadProps = {
+  initial: { opacity: 0, scale: 0.5 },
+  animate: { opacity: 1, scale: 1 },
+  transition: {
+    duration: 0.3,
+    ease: [0, 0.71, 0.2, 1.01],
+    scale: {
+      type: "spring",
+      damping: 5,
+      stiffness: 100,
+      restDelta: 0.001,
     },
   },
 };
