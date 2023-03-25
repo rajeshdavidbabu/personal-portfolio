@@ -22,7 +22,6 @@ export const StaggerParent = ({ children, className }: StaggerParentProps) => {
   const [disableAnimations, setDisableAnimations] = useState(false);
 
   useEffect(() => {
-    console.log("isMobile", isMobile);
     setDisableAnimations(isMobile);
   }, []);
 
