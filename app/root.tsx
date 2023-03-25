@@ -32,11 +32,6 @@ export const links: LinksFunction = () => [
     href: "/assets/images/home-illustration-small.webp",
     as: "image",
   },
-  {
-    rel: "preload",
-    href: "/assets/images/home-illustration.webp",
-    as: "image",
-  },
   { rel: "stylesheet", href: stylesheet },
 ];
 
