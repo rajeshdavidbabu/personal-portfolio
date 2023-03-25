@@ -1,46 +1,41 @@
 import { motion } from "framer-motion";
-import { isMobile } from "react-device-detect";
+import { useEffect, useState } from "react";
+import { isMobile as isMobileCheck } from "react-device-detect";
 
 export interface StaggerChildProps {
   children: React.ReactNode;
   className?: string;
-  tag?: string;
+  disableOnMobile?: boolean;
 }
 
 export const staggerChildVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+// Animations are valid only inside StaggerParent
 export const StaggerChild = ({
   children,
   className,
-  tag,
+  disableOnMobile = false,
 }: StaggerChildProps) => {
-  if (isMobile) {
-    return <div className={className}>{children}</div>;
-  }
+  const [isMobile, setIsMobile] = useState(false);
 
-  if (tag === "h1") {
-    return (
-      <motion.h1 variants={staggerChildVariants} className={className}>
-        {children}
-      </motion.h1>
-    );
-  }
-
-  if (tag === "p") {
-    return (
-      <motion.p variants={staggerChildVariants} className={className}>
-        {children}
-      </motion.p>
-    );
-  }
+  // This needs to run on the client-side
+  useEffect(() => {
+    setIsMobile(isMobileCheck);
+  }, []);
 
   return (
-    <motion.div variants={staggerChildVariants} className={className}>
-      {children}
-    </motion.div>
+    <div>
+      {isMobile && disableOnMobile ? (
+        <div className={className}>{children}</div>
+      ) : (
+        <motion.div variants={staggerChildVariants} className={className}>
+          {children}
+        </motion.div>
+      )}
+    </div>
   );
 };
 

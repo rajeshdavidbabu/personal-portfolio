@@ -2,28 +2,40 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { isMobile as isMobileCheck } from "react-device-detect";
 
-export interface StaggerParentProps {
+export interface SpringLoadProps {
   children: React.ReactNode;
   className?: string;
   disableOnMobile?: boolean;
+  bounce?: boolean;
 }
 
-export const staggerParentVariants = {
-  hidden: { opacity: 1 },
-  visible: {
-    opacity: 1,
+const getSpringLoadProps = (bounce: boolean) => {
+  const scale = bounce
+    ? {
+        type: "spring",
+        damping: 5,
+        stiffness: 100,
+        restDelta: 0.001,
+      }
+    : { type: "spring" };
+
+  return {
+    initial: { opacity: 0, scale: 0.5 },
+    animate: { opacity: 1, scale: 1 },
     transition: {
-      staggerChildren: 0.2,
+      duration: 0.3,
+      ease: [0, 0.71, 0.2, 1.01],
+      scale,
     },
-  },
+  };
 };
 
-// Framer stagger animations are used in combinations with stagger parent and children.
-export const StaggerParent = ({
+export const SpringLoad = ({
   children,
   className,
   disableOnMobile = false,
-}: StaggerParentProps) => {
+  bounce = false,
+}: SpringLoadProps) => {
   const [isMobile, setIsMobile] = useState(false);
 
   // This needs to run on the client-side
@@ -36,13 +48,7 @@ export const StaggerParent = ({
       {isMobile && disableOnMobile ? (
         <div className={className}>{children}</div>
       ) : (
-        <motion.div
-          variants={staggerParentVariants}
-          initial="hidden"
-          animate="visible"
-          className={className}
-        >
-          {isMobile}
+        <motion.div {...getSpringLoadProps(bounce)} className={className}>
           {children}
         </motion.div>
       )}
@@ -50,4 +56,4 @@ export const StaggerParent = ({
   );
 };
 
-export default StaggerParent;
+export default SpringLoad;
