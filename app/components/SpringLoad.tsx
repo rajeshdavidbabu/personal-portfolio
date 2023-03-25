@@ -1,54 +1,38 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { isMobile as isMobileCheck } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 export interface SpringLoadProps {
   children: React.ReactNode;
   className?: string;
-  disableOnMobile?: boolean;
-  bounce?: boolean;
 }
 
-const getSpringLoadProps = (bounce: boolean) => {
-  const scale = bounce
-    ? {
-        type: "spring",
-        damping: 5,
-        stiffness: 100,
-        restDelta: 0.001,
-      }
-    : { type: "spring" };
-
-  return {
-    initial: { opacity: 0, scale: 0.5 },
-    animate: { opacity: 1, scale: 1 },
-    transition: {
-      duration: 0.3,
-      ease: [0, 0.71, 0.2, 1.01],
-      scale,
+const springLoadProps = {
+  initial: { opacity: 0, scale: 0.5 },
+  animate: { opacity: 1, scale: 1 },
+  transition: {
+    duration: 0.3,
+    ease: [0, 0.71, 0.2, 1.01],
+    scale: {
+      type: "spring",
     },
-  };
+  },
 };
 
-export const SpringLoad = ({
-  children,
-  className,
-  disableOnMobile = false,
-  bounce = false,
-}: SpringLoadProps) => {
-  const [isMobile, setIsMobile] = useState(false);
+// Disabled on mobile devices
+export const SpringLoad = ({ children, className }: SpringLoadProps) => {
+  const [disableAnimations, setDisableAnimations] = useState(true);
 
-  // This needs to run on the client-side
   useEffect(() => {
-    setIsMobile(isMobileCheck);
+    setDisableAnimations(isMobile);
   }, []);
 
   return (
     <div>
-      {isMobile && disableOnMobile ? (
+      {disableAnimations ? (
         <div className={className}>{children}</div>
       ) : (
-        <motion.div {...getSpringLoadProps(bounce)} className={className}>
+        <motion.div {...springLoadProps} className={className}>
           {children}
         </motion.div>
       )}

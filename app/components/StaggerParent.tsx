@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { isMobile as isMobileCheck } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 export interface StaggerParentProps {
   children: React.ReactNode;
   className?: string;
-  disableOnMobile?: boolean;
 }
 
 export const staggerParentVariants = {
@@ -18,22 +17,18 @@ export const staggerParentVariants = {
   },
 };
 
-// Framer stagger animations are used in combinations with stagger parent and children.
-export const StaggerParent = ({
-  children,
-  className,
-  disableOnMobile = false,
-}: StaggerParentProps) => {
-  const [isMobile, setIsMobile] = useState(false);
+// Children needs to have stagger variants and disabled on mobile devices
+export const StaggerParent = ({ children, className }: StaggerParentProps) => {
+  const [disableAnimations, setDisableAnimations] = useState(false);
 
-  // This needs to run on the client-side
   useEffect(() => {
-    setIsMobile(isMobileCheck);
+    console.log("isMobile", isMobile);
+    setDisableAnimations(isMobile);
   }, []);
 
   return (
     <div>
-      {isMobile && disableOnMobile ? (
+      {disableAnimations ? (
         <div className={className}>{children}</div>
       ) : (
         <motion.div
@@ -42,7 +37,6 @@ export const StaggerParent = ({
           animate="visible"
           className={className}
         >
-          {isMobile}
           {children}
         </motion.div>
       )}

@@ -5,14 +5,11 @@ import SpringLoad from "~/components/SpringLoad";
 export default function Index() {
   return (
     <div className="mx-0 my-[2em] flex min-h-[400px] flex-[1] items-center justify-between max-w-md:flex-col-reverse">
-      <StaggerParent
-        disableOnMobile={true}
-        className="max-w-md:flex-[0 flex-[1] px-[1em] py-0 max-w-md:pb-[2em] max-w-md:text-center"
-      >
+      <StaggerParent className="max-w-md:flex-[0 flex-[1] px-[1em] py-0 max-w-md:pb-[2em] max-w-md:text-center">
         <h1 className="mb-[0.5em] text-2xl font-bold leading-[1.3] md:text-4xl">
           Hi there! I'm Raj.
         </h1>
-        <StaggerChild disableOnMobile={true}>
+        <StaggerChild>
           <p className="text-lg md:text-xl">
             I'm a software engineering leader.
             <br />
@@ -23,7 +20,7 @@ export default function Index() {
         </StaggerChild>
         <br />
         <br />
-        <StaggerChild disableOnMobile={true}>
+        <StaggerChild>
           <p className="text-lg md:text-xl">
             Do you like my template ?
             <br />
@@ -40,10 +37,7 @@ export default function Index() {
         </StaggerChild>
       </StaggerParent>
 
-      <SpringLoad
-        disableOnMobile={true}
-        className="relative my-0 flex items-center rounded-full border-text-secondary bg-gradient-to-r from-primary via-plants to-text-secondary p-1 text-center dark:border-d-text-secondary dark:to-d-text-secondary max-w-md:mb-[2rem]"
-      >
+      <SpringLoad className="relative my-0 flex items-center rounded-full border-text-secondary bg-gradient-to-r from-primary via-plants to-text-secondary p-1 text-center dark:border-d-text-secondary dark:to-d-text-secondary max-w-md:mb-[2rem]">
         <picture className="flex aspect-square h-full w-full items-center rounded-full bg-background dark:bg-d-background">
           <source
             srcSet="/assets/images/home-illustration.webp"
