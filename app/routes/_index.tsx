@@ -8,6 +8,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 export const loader: LoaderFunction = async () => {
+  // This static assets are added to the build folder with a contenthash.
   return json({ homeImageSrc, homeImageSmallSrc });
 };
 
