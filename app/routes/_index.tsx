@@ -1,8 +1,8 @@
 import StaggerParent from "~/components/StaggerParent";
 import StaggerChild from "~/components/StaggerChild";
 import SpringLoad from "~/components/SpringLoad";
-import homeImageSrc from "../../public/assets/images/home-illustration.webp";
-import homeImageSmallSrc from "../../public/assets/images/home-illustration-small.webp";
+import homeImageSrc from "~/static-images/home-illustration.webp";
+import homeImageSmallSrc from "~/static-images/home-illustration-small.webp";
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
