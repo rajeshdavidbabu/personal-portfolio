@@ -19,4 +19,5 @@ module.exports = {
   serverBuildDirectory: "build",
   serverBuildPath: "build/index.js",
   publicPath: "/build/",
+  serverBuildTarget: "vercel",
 };
