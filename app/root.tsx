@@ -27,6 +27,16 @@ import Footer from "~/components/Footer";
 import stylesheet from "~/styles/tailwind.css";
 
 export const links: LinksFunction = () => [
+  {
+    rel: "preload",
+    href: "/assets/images/home-illustration-small.webp",
+    as: "image",
+  },
+  {
+    rel: "preload",
+    href: "/assets/images/home-illustration.webp",
+    as: "image",
+  },
   { rel: "stylesheet", href: stylesheet },
 ];
 

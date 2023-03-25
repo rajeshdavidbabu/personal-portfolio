@@ -40,13 +40,13 @@ export default function Index() {
       <SpringLoad className="relative my-0 flex items-center rounded-full border-text-secondary bg-gradient-to-r from-primary via-plants to-text-secondary p-1 text-center dark:border-d-text-secondary dark:to-d-text-secondary max-w-md:mb-[2rem]">
         <picture className="flex aspect-square h-full w-full items-center rounded-full bg-background dark:bg-d-background">
           <source
-            srcSet={"/assets/images/home-illustration-2TNEAYW4.webp"}
+            srcSet={"/assets/images/home-illustration.webp"}
             media="(min-width: 600px)"
           />
           <img
             className="mb-[1em] w-full max-w-[550px] max-w-lg:max-w-[400px]"
             alt="Illustration of person reading a book"
-            src={"/assets/images/home-illustration-small-72QKCOCX.webp"}
+            src={"/assets/images/home-illustration-small.webp"}
             width="550"
             height="466"
           />
