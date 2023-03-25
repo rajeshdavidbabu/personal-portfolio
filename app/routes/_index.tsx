@@ -1,6 +1,7 @@
 import StaggerParent from "~/components/StaggerParent";
 import StaggerChild from "~/components/StaggerChild";
 import type { LinksFunction } from "@remix-run/node";
+import SpringLoad from "~/components/SpringLoad";
 
 export const links: LinksFunction = () => [
   {
