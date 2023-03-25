@@ -45,7 +45,7 @@ export default function Index() {
         </StaggerChild>
       </StaggerParent>
 
-      <div className="relative my-0 flex items-center rounded-full border-text-secondary bg-gradient-to-r from-primary via-plants to-text-secondary p-1 text-center dark:border-d-text-secondary dark:to-d-text-secondary max-w-md:mb-[2rem]">
+      <SpringLoad className="relative my-0 flex items-center rounded-full border-text-secondary bg-gradient-to-r from-primary via-plants to-text-secondary p-1 text-center dark:border-d-text-secondary dark:to-d-text-secondary max-w-md:mb-[2rem]">
         <picture className="flex aspect-square h-full w-full items-center rounded-full bg-background dark:bg-d-background">
           <source
             srcSet={"/assets/images/home-illustration.webp"}
@@ -59,7 +59,7 @@ export default function Index() {
             height="466"
           />
         </picture>
-      </div>
+      </SpringLoad>
     </div>
   );
 }
