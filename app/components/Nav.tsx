@@ -40,13 +40,17 @@ const Nav = () => {
         <div className="hidden justify-end lg:flex">
           <NavLinks />
         </div>
-        <div className="w-[75px]">
+        <div className="w-[75px] lg:w-[100px]">
           <ThemeToggle />
         </div>
+
         <div className="flex w-[75px] justify-end lg:hidden">
-          <button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
+          <button onClick={toggleNavbar}>
+            {isOpen ? <X size={25} /> : <Menu size={25} />}
+          </button>
         </div>
       </nav>
+
       {isOpen && (
         <div key="nav-links" className="mt-4 basis-full lg:hidden">
           <NavLink to="/" prefetch="render" className={activeStyleCallback}>

@@ -18,7 +18,7 @@ export const ThemeToggleIcon = ({ theme, checked }: ThemeToggleIconProps) => {
     return (
       <Component
         key={theme}
-        width={23}
+        size={25}
         className={checked ? "fill-text-primary dark:fill-d-text-primary" : ""}
       />
     );
