@@ -10,8 +10,6 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-export const config = { runtime: "edge" };
-
 export default function BlogLayout() {
   const location = useLocation();
   const pathname = location.pathname;

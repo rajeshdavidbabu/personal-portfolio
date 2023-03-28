@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { imgSrcs } from "~/data/blogMetaData";
 
-export const config = { runtime: "edge" };
-
 export default function Index() {
   const [isImageLoaded, setIsImageLoaded] = useState(false || isMobile);
   const [imgSrc, setImgSrc] = useState("");
