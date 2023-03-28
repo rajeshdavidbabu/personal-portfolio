@@ -4,6 +4,8 @@ import { blogList } from "~/data/blogMetaData";
 import StaggerParent from "~/components/StaggerParent";
 import StaggerChild from "~/components/StaggerChild";
 
+export const config = { runtime: "edge" };
+
 export default function Blog() {
   // For now, we're just going to use the blogList data without loader.
   // In the future, we'll use a loader to fetch the data from a CMS.

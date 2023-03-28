@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
 
 export interface SpringLoadProps {
   children: React.ReactNode;
@@ -19,24 +17,11 @@ const springLoadProps = {
   },
 };
 
-// Disabled on mobile devices
 export const SpringLoad = ({ children, className }: SpringLoadProps) => {
-  const [disableAnimations, setDisableAnimations] = useState(true);
-
-  useEffect(() => {
-    setDisableAnimations(isMobile);
-  }, []);
-
   return (
-    <div>
-      {disableAnimations ? (
-        <div className={className}>{children}</div>
-      ) : (
-        <motion.div {...springLoadProps} className={className}>
-          {children}
-        </motion.div>
-      )}
-    </div>
+    <motion.div {...springLoadProps} className={className}>
+      {children}
+    </motion.div>
   );
 };
 

@@ -10,8 +10,6 @@ export const action: ActionFunction = async ({ request }) => {
   const form = new URLSearchParams(requestText);
   const theme = form.get("theme");
 
-  console.log("hitting the action function");
-
   if (!isTheme(theme)) {
     return json({
       success: false,
