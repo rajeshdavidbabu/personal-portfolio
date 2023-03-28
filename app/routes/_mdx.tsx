@@ -1,28 +1,21 @@
 import styles from "highlight.js/styles/github-dark-dimmed.css";
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import type { BlogList } from "~/data/blogList.server";
-import { blogList } from "~/data/blogList.server";
+import type { LinksFunction } from "@remix-run/node";
+import { NavLink, Outlet, useLocation } from "@remix-run/react";
+import { blogList } from "~/data/blogMetaData";
 import { ArrowLeft } from "lucide-react";
 import StaggerParent from "~/components/StaggerParent";
 import StaggerChild from "~/components/StaggerChild";
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url);
-  const pathname = url.pathname;
-
-  const currentPost = blogList.find(({ pathName }) => pathName === pathname);
-
-  return json(currentPost);
-};
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
 export default function BlogLayout() {
-  const currentPost = useLoaderData<BlogList>();
+  const location = useLocation();
+  const pathname = location.pathname;
+  // For now, we're just going to use the blogList data without loader.
+  // In the future, we'll use a loader to fetch the data from a CMS.
+  const currentPost = blogList.find(({ pathName }) => pathName === pathname);
 
   return (
     <StaggerParent>

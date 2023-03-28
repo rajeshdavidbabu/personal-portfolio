@@ -1,18 +1,13 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import type { BlogList } from "~/data/blogList.server";
-import { blogList } from "~/data/blogList.server";
+import { Link } from "@remix-run/react";
+import { blogList } from "~/data/blogMetaData";
 
 import StaggerParent from "~/components/StaggerParent";
 import StaggerChild from "~/components/StaggerChild";
 
-export const loader: LoaderFunction = async () => {
-  return json(blogList);
-};
-
 export default function Blog() {
-  const posts = useLoaderData<BlogList[]>();
+  // For now, we're just going to use the blogList data without loader.
+  // In the future, we'll use a loader to fetch the data from a CMS.
+  const posts = blogList;
 
   return (
     <StaggerParent className="mx-auto my-0 w-full max-w-[42em]">
@@ -28,7 +23,7 @@ export default function Blog() {
           >
             <div className="h-full w-full rounded-lg bg-background py-4 px-8 dark:bg-d-background">
               <h2 className=" mb-4 mt-6 font-sans text-xl font-bold leading-[1.3] md:text-3xl">
-                <Link prefetch="intent" to={post.slug}>
+                <Link prefetch="render" to={post.slug}>
                   {post.title}
                 </Link>
               </h2>

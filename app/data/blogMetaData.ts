@@ -37,3 +37,10 @@ export const blogList: Array<BlogList> = [
     readingTime: "10 min",
   },
 ];
+
+export const imgSrcs = {
+  mobile:
+    "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
+  desktop:
+    "https://res.cloudinary.com/dtshavwni/image/upload/v1680013101/home-illustration_vfanz6.webp",
+};
