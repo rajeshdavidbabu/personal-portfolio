@@ -1,0 +1,151 @@
+---
+title: "Deploy your Webpack apps to Heroku in 3 simple steps"
+---
+
+![](https://cdn-images-1.medium.com/max/800/1*asyGC8WIGaqO6JvKbKXWeQ.png)
+
+If you are starting on web-development in 2018, I am sure all or at least most of your frontend projects are by default built and bundled using **Webpack**. Webpack has sunk into almost all the frontend projects we use nowadays and we have a really strong online dev community around Webpack to support us. If you are a beginner or even an intermediate to Webpack, I highly recommend this [link](https://medium.com/r/?url=https%3A%2F%2Fmedium.freecodecamp.org%2Fpart-1-react-app-from-scratch-using-webpack-4-562b1d231e75) to get started on adding Webpack to your working web application.
+
+This post is mainly aimed at people who are already using Webpack applications in their personal, GitHub or even client projects to successfully deploy and host their web applications on **Heroku**.
+
+If you are new to **Heroku**, please check out the [link](https://medium.com/r/?url=https%3A%2F%2Fwww.heroku.com%2F) to read further.
+
+> In this post, I am going to quickly cover how to make an existing **Webpack** application deployment ready, (irrespective of the frontend libraries **React** or **Vue** **JS**) and help deploy your code on your **Heroku** account, in three simple steps. I have also attached my code repo at the end of the post, please feel free to clone/fork and play around with it.
+
+---
+
+**_Assuming that you already have a working Webpack application, let’s get into making it deployment ready for Heroku._**
+
+### **1. Build an express server**
+
+The first step is to build a simple express server to serve your application. _What is an Express server you ask?_
+
+> An Express is a web-application framework that basically runs on a node environment. In our case it serves our application from a port available in the same environment.
+
+This is all you need to know to get started with building an express server. Unlike full-fledged express web applications, we are not going to serve each page based on an express router (_it’s not really important to know what I am talking about tbh..!_ ). Instead, we are going to build a simple standard express server to serve our index.html file.
+
+This code might seem repetitive across many other blogs because it pretty much is the standard for building a simple express web server. Create a server.js and copy- paste this code.
+
+```js
+const express = require("express");
+const path = require("path");
+const port = process.env.PORT || 8080;
+const app = express();
+
+// the __dirname is the current directory from where the script is running
+app.use(express.static(__dirname));
+
+// send the user to index html page inspite of the url
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "index.html"));
+});
+
+app.listen(port);
+```
+
+#### Explanation
+
+1.  **_\_\_dirname_** points to the current directory from where the **_server.js_** is being run from and that is treated as the root of your project.
+2.  When we tell the express app to use a directory it automatically picks up the index.html file to serve.
+3.  We have also added an extra check to redirect the users back to index.html to avoid ‘not found’ errors and for the sake of simplicity.
+
+### 2. Webpack Production Build
+
+This is a crucial step for us and it ensures that our application properly spits out a bundled js which we can use for deployment.
+
+In the **Webpack-cli**, this is a simple one-liner, and it should spit out the output based on **_webpack.config.js_** we have.
+
+webpack -p
+
+In your **webpack.config.js** file, if you have the following code, you will see a **_bundle.js_** generated at the root of your application.
+
+```js
+module.exports = {
+  entry: \[
+    './src/index.js'
+  \],
+  output: {
+    path: __dirname,
+    publicPath: '/',
+    filename: 'bundle.js'
+  }
+}
+```
+
+On the flip-side when you do not have this config setup, your output will be generated in a **_/dist_** folder under the name **_main.js_**.
+
+In both the cases, we need an HTML file and the location of your index.html determines where your express application should point to. Let’s say if you generate your **_index.html_** inside your **_/dist_** folder using a **_\[htmlWebpackPlugin\]_**, then the code that points to express **_app.use_** should be modified in the following way
+
+app.use(express.static(\_\_dirname + '/dist'));
+
+In my case I do not use a **_\[htmlWebpackPlugin\]_**, instead I have a predefined **_index.html_** at the root of the folder where **_bundle.js_** is linked through the script tag.
+
+> **Note**: At this stage if you are not clear on what I am talking about, please download the code repo at the end of this post and check out the **webpack.config.js** file.
+
+### **3. Verify and deploy**
+
+If you have successfully generated the bundled js file either in the **_/dist_** folder or in your custom location and made sure that your generated/pre-defined **_index.html_** has a script tag pointing to the bundled js**_(main.js / bundle.js), you are now ready to ready to deploy your application._**
+
+But before we jump the guns and deploy we need to make sure that the express server properly serves the application to **localhost:8080.**
+
+Run the following command in your terminal and verify if your application is being served on port 8080.
+
+```bash
+node server.js
+```
+
+Yes? Great, you are just two scripts away from deployment. No? verify your **s*erver.js*** and make sure that you are pointing to the right directory and also check your **_webpack.config.js_** to see where your bundled js is being generated.
+
+Now that we are here finally, close to deployment, we need to add two lines of script in our **_package.json_** file. Add these two following commands under the scripts section.
+
+```js
+"scripts": {
+  "start": "node server.js", // serves the application
+  "heroku-postbuild": "webpack -p" // runs after installation
+},
+```
+
+**_Note_:** Please replace the existing **“start”** command with **“dev”** and continue running dev server using **npm run dev** instead of **start**.
+
+#### Explanation
+
+> **Heroku** automatically installs all our dependencies and goes on to do a **post-build** operation before serving our application. In this post-build operation, we do the production bundling of our js files and allow Heroku to kick-start the application by running the **start** command.
+
+Once you are done with the above, now let’s look at the deploying it to Heroku. Assuming that you already have a Heroku login and an account. Install the Heroku-cli following the instructions on this [link](https://medium.com/r/?url=https%3A%2F%2Fdevcenter.heroku.com%2Farticles%2Fheroku-cli%23download-and-install).
+
+_Once you have installed the Heroku-CLI, follow the instructions below to deploy from the command line one after another._
+
+```bash
+heroku login
+
+heroku create
+
+git init
+
+heroku git:remote --app <your-heroku-app-name>
+
+git add . && git commit -m "initial commit"
+
+git push heroku master
+```
+
+#### Explanation
+
+1.  Heroku login prompts you to enter username and password.
+2.  Heroku create command creates an application and gives you back the application URL and Heroku’s git repo for your project.
+3.  Re-initialize your project by running git init.
+4.  Add Heroku’s git repo as the remote repo of your current application.
+5.  Git add and commit .
+6.  Push to Heroku’s git repository.
+
+Visit your application URL generated at step 2, during Heroku create, you should be able to view your application. Voila !! your app is deployed :)
+
+---
+
+### Conclusion
+
+This should work for all the **Webpack** applications, irrespective of their frontend library, based on your web pack config file. The key thing to note here is your **_package.json_** file, make sure all the dependencies and dev-dependancies are part of it including **Webpack**.
+
+I have created a **_Webpack 4 boilerplate with react and express server_** on my Github, please feel free to fork the code and try to run all the commands I have mentioned above.
+
+**GitHub Repo** [Webpack-react-express Boilerplate](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2Freact-for-heroku)

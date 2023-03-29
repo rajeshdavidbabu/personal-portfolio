@@ -1,0 +1,67 @@
+---
+title: "Building a Scalable and Modular Architecture for React-TS Applications"
+---
+
+### Introduction
+
+React.js is largely unopinionated, apart from some of the design patterns that are recommended and enforced while using hooks. And as a result, there is no official recommendation for organising your project and this most often times could lead to an architectural quagmire of components.
+
+After experimenting with several different patterns and architectures at our current company, we finally ended up in a **_modular_** architecture that enabled us to scale our projects effortlessly.
+
+### Core Principles
+
+#### Isolation of Modules
+
+Every module needs to be isolated with its own dependencies and should be aware of all the dependencies it requires with an entry point for all its APIs.
+
+#### No-circular dependency
+
+Modules should not import each other as it breaks the [Acyclic-dependencies principle](https://medium.com/r/?url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAcyclic_dependencies_principle%23%3A~%3Atext%3DThe%2520acyclic%2520dependencies%2520principle%2520%28ADP%2Cform%2520a%2520directed%2520acyclic%2520graph.).
+
+#### Differentiation between Modules
+
+_Dependent vs Independent modules_. Independent modules are not so tightly coupled with other modules apart from common modules within the application, enabling us to out-source it to an external library.
+
+![](https://cdn-images-1.medium.com/max/800/1*h8eRI6PjUdn2q4tTEZ_MVQ.png)_Modular Architecture for React Applications_
+
+### Dependent Modules
+
+The modular architecture diagram represents a simple scalable modular architecture that adheres with our core principles.
+
+> **_Note_**: Every **arrowhead** in the diagram above represents an import statement.
+
+#### Application
+
+The application/root module is simply the collection/composition of containers(a.k.a smart components). It's responsible for bootstrapping the application with **_react-suspense_**_,_ **_error-boundaries_** and any top-level **_providers_**. In general, it should contain as very minimal code as possible.
+
+#### **Containers**
+
+The containers module is a collection of smart components that are connected to the state via the hooks. As you can see that the containers modules only import _common, components and hooks_ modules and it doesn’t concern the state module at all. This helps us to scale the hooks module without affecting the states.
+
+#### **Hooks**
+
+The hooks module supplies data to the containers through the state and also updates the state based on the user interaction with the container components.
+
+#### _State_
+
+The state module is responsible for populating the client-side state using the service and common modules. This enables us to avoid polluting the containers and hooks with service APIs.
+
+### Independent Modules (Possibly)
+
+Independent modules are only coupled to the _common modules_, although this is not as independent as we would like it to be, it's still easier to outsource it to an external library.
+
+#### Components
+
+The components module is just a collection of purely functional components that do not care about the application state.
+
+Although this could be purely independent like an external library, you might still end up building **_application-specific components_** that closely resemble the data types from the common module. Hence it's often helpful to isolate/mark _generic_ and _specific_ components. _Generic_ components do not use any types from the common modules, thereby enabling us to move them to an external component library.
+
+#### Services
+
+Services modules form the collection of APIs that interact with the backend and the resulting response should align with the core data types present in our common modules.
+
+### Conclusion
+
+Each module represented in the diagram could be a folder of its own in your react-project, with an entry point*(eg: index.ts).*
+
+**_And if done correctly every bubble could grow in size without affecting the other bubble._**

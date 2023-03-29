@@ -1,0 +1,134 @@
+---
+title: "A Quick Guide On Choosing A Robust Frontend Tech Stack"
+---
+
+At the time of writing this article, the frontend world is still a _wild west_ of technologies and architectures. Although we have several approaches, frameworks, libraries, languages and environments at our disposal, not all of them are scalable and robust.
+
+![](https://cdn-images-1.medium.com/max/800/1*wM9Ujw35xCpDKcHnu-YZnw.jpeg)_Photo by [Tara Winstead](https://medium.com/r/?url=https%3A%2F%2Fwww.pexels.com%2F%40tara-winstead%3Futm_content%3DattributionCopyText%26utm_medium%3Dreferral%26utm_source%3Dpexels) from [Pexels](https://medium.com/r/?url=https%3A%2F%2Fwww.pexels.com%2Fphoto%2Fred-check-mark-over-black-box-8850706%2F%3Futm_content%3DattributionCopyText%26utm_medium%3Dreferral%26utm_source%3Dpexels)_
+
+Hence, we have to have some sense of awareness and responsibility while choosing a tech stack and this article is going to help with that.
+
+---
+
+### Choosing Core Technologies
+
+An application architecture consists of several parts that make our application meaningful, extensible and deployable. Whilst building a frontend architecture, it's of utmost importance to choose a _core library_ and a _core language_ before we choose the rest of the tech stack.
+
+What do I mean by that?
+
+**Core library or framework** is the platform on which we are going to build our frontend applications, for example — *React, Vue, Angular and Svelte etc*.
+
+**Core language,** on the other hand, is the language that we are going to use to build it— namely _Javascript, Typescript and Coffeescript_ _etc_.
+
+All our additional development tools need to complement and work in unison with these two _entities/technologies_, if not, we are going to hit roadblocks down the line and it will also take a toll on our _developer-experience_.
+
+There are several factors that are involved in choosing _core technologies_, but I ideally stick to 3 important ones —
+
+- **Market Share**— This enables us to find better developers from a large pool of skilled developers in that technology. [_State Of JS_](https://medium.com/r/?url=https%3A%2F%2F2020.stateofjs.com%2Fen-US%2F) can give you a better understanding. _Eg:_ At the time of writing this article, _React_ still holds the largest market share.
+- **Opinionatedness** — How [_opinionated_](https://medium.com/r/?url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F802050%2Fwhat-is-opinionated-software%23%3A~%3Atext%3DAn%2520opinionated%2520framework%2520is%2520one%2Cmade%2520by%2520the%2520framework%2520designer.) is the library/framework when you compare it to general web development. _Eg:_ _React_ is less opinionated than _Angular_ and it offers a [_minimal API surface_](https://medium.com/r/?url=https%3A%2F%2F2014.jsconf.eu%2Fspeakers%2Fsebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html).
+- **Future Proof** — How long can the code-base live without turning into [_spaghetti_](https://medium.com/r/?url=https%3A%2F%2Fwww.sitepoint.com%2Fwrite-maintainable-javascript%2F). This goes in hand-in-hand with _scalability_ and the ability of the code to stay _standard_ over time. _Eg:_ [_Typescript_](https://medium.com/r/?url=https%3A%2F%2Fwww.monocubed.com%2Ftypescript-vs-javascript%2F) code-base scales better when working with larger teams.
+
+The choice of technology always comes with its own pros and cons, however to some degree,
+
+> you have to be opinionated and intelligently biased towards the tools you use.
+
+---
+
+### Building A Frontend Architecture
+
+With the above factors in mind, I have chosen the following core technologies  
+ **React** — *Core library*  
+ **Typescript** — *Core language*
+
+The following illustration offers a simple perspective into building a simple yet scalable frontend architecture around our chosen core technologies.
+
+![](https://cdn-images-1.medium.com/max/800/1*9PZVIAX9paBBqoiDHP_57Q.png)_A Simple React-TS based Architecture._
+
+---
+
+### Finally — Our Tech Stack
+
+With the aforementioned architecture in mind, let’s take a quick look at the tech stack that could help us achieve it —
+
+#### Environment
+
+**_node(v14+)_** and **_npm(v7+)_** — development and package _environment_.
+
+#### Core Libraries
+
+**_react.js(v17+)_** — *core library* for the project.  
+**_react-dom_** — dom APIs for react.  
+**_react-router-dom_** — client-side routing for react.  
+**_recoil_** — hooks based state-management for react.   
+**_react-hook-form_** — form library based on hooks.   
+**_react-error-boundary_** — error boundary to catch rendering errors.
+
+#### Core Language
+
+**_typescript(v4+)_** — *core language* used for development.
+
+#### Bundler
+
+**_webpack(v5)_** — helps us _bundle_ our project into single/multiple js chunks.  
+**_webpack-cli_** — enables us to use the webpack command in the npm scripts.  
+**_webpack-dev-server_** — enables us to run webpack development server.  
+**_html-webpack-plugin_** — enables us to generate a final HTML using a template.  
+**_fork-ts-checker-webpack-plugin_** — enables us to type-check the code during the build process.  
+**_eslint-webpack-plugin_** — enables us to catch linting errors during the build process.  
+**_clean-web-pack-plugin_** — enables us to clean existing build folders before the start of the build process.  
+**_babel-loader_** — babel module loader for webpack.  
+**_ts-node_** — helps node environment to run TS files.
+
+#### Transpiler
+
+**_@babel/core(v7+)_** — helps us _transpile_ our JS compatible with old browsers and new browsers with its support libraries —   
+**_@babel/preset-react_** — enables us to use the latest JS features and will also use _browserslist_ from _package.json_ while transpiling code for the target browsers.  
+@**_babel/preset-react_** and @**_babel/preset-typescript_** — enables us to transform React and Typescript code into JS.  
+**_@babel/plugin-transform-runtime_** — enables us to save on code size, remove some duplicates in our code, and add polyfills where required.  
+**_@babel/runtime-corejs3_** — runtime corejs polyfills on production bundle.
+
+#### Linter
+
+**_eslint(v7+)_** — *linter* for our ecmascript.  
+**_eslint-config-prettier_** — turns off all rules that are unnecessary or might conflict with prettier.  
+**_eslint-plugin-prettier_** — runs prettier as an eslint rule and reports differences as individual eslint issues.  
+**_eslint-plugin-react_** — runs react specific eslint rules.  
+**_eslint-plugin-react-hooks_** — runs react hooks rules for eslint.  
+**_@typescript-eslint/eslint-plugin_** — enables eslint for TS code.  
+**_@typescript-eslint/parser_** — enables parsing of TS.
+
+#### Formatter
+
+**_prettier(v2+)_** — *formatter* that works with eslint plugins.
+
+#### Test Environment
+
+**_jest_** — test environment to build and run our unit and snapshot tests.  
+**_@testing-library/react_** — complete React DOM testing utilities.  
+**_@testing-library/dom_** — simple and complete DOM testing utilities.  
+**_@testing-library/jest-dom_** — custom jest matchers to test the state of the DOM.  
+**_@testing-library/user-event_** — fires user events for our test cases.
+
+#### Internationalization
+
+**_i18next_** — internationalization framework for JS.  
+**_i18next-browser-languagedetector_** — helps us detect browser language.  
+**_react-i18next_** — internationalization APIs for react.
+
+#### Component Library
+
+***@chakra-ui/react* —** component library helper to build reusable components.**_@emotion/react —_** *css-in-js* library for react.**@emotion/styled —** styled APIs for emotion-based react components.**  
+@framer-motion** — animation library for react.  
+**_@chakra/icons_** — icon package for chakra-ui.
+
+---
+
+### Conclusion
+
+In this _tech-stack_ above not all of them are production _dependencies_, only some are, for example — react, its supporting libraries, internationalization, chakra-ui and @babel/runtime-corejs3 are dependencies. And everything else is a [_development dependency_](https://medium.com/@dylanavery720/npmmmm-1-dev-dependencies-dependencies-8931c2583b0c#:~:text=The%20difference%20between%20these%20two,are%20also%20required%20at%20runtime.).
+
+Hopefully, this quick guide enables you to build your tech stack for your next project.
+
+And check out the [**_GitHub branch_**](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshbabu-oviva%2Freact-ts-boilerplate%2Ftree%2Ffeature%2Fproject-setup) for the code.
+
+Happy Coding !
