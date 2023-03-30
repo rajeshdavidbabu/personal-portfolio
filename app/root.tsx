@@ -34,8 +34,11 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Raj's Personal Website",
   "og:title": "Raj's Personal Website",
-  "og:description": "A Personal Portfolio and Blog by Rajesh Babu",
+  "og:description":
+    "A Personal Portfolio Rajesh Babu, where you can read his blogs and find his social links.",
   "og:url": "https://rajeshdavibbabu.com",
+  "twitter:card":
+    "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
   "og:image":
     "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
   viewport: "width=device-width,initial-scale=1",
