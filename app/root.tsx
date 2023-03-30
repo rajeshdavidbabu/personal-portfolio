@@ -40,7 +40,7 @@ export const meta: MetaFunction = () => ({
   "twitter:card":
     "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
   "og:image":
-    "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
+    "https://res.cloudinary.com/dtshavwni/image/upload/w_1200,h_630,c_scale/v1680013101/home-illustration_vfanz6.webp",
   viewport: "width=device-width,initial-scale=1",
 });
 
