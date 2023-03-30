@@ -33,9 +33,10 @@ export const links: LinksFunction = () => [
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Raj's Personal Website",
-  description: "A Personal Portfolio and Blog by Rajesh Babu",
-  url: "https://rajeshdavibbabu.com",
-  image:
+  "og:title": "Raj's Personal Website",
+  "og:description": "A Personal Portfolio and Blog by Rajesh Babu",
+  "og:url": "https://rajeshdavibbabu.com",
+  "og:image":
     "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
   viewport: "width=device-width,initial-scale=1",
 });
