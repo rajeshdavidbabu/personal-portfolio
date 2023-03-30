@@ -2,25 +2,23 @@
 title: "How does graphQL work anyway?"
 ---
 
-### Introduction
-
 Have you ever wondered how graphQL selectively returns only the data that you specifically requested?
 
 ![A connected web of nodes and nylon ropes.](https://cdn-images-1.medium.com/max/800/1*3hdPHh81PA_7EXLN6KPRhg.jpeg)_Interconnected Nodes — Photo by [Clint Adair](https://medium.com/r/?url=https%3A%2F%2Funsplash.com%2F%40clintadair%3Futm_source%3Dunsplash%26utm_medium%3Dreferral%26utm_content%3DcreditCopyText) on [Unsplash](https://medium.com/r/?url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fconnections%3Futm_source%3Dunsplash%26utm_medium%3Dreferral%26utm_content%3DcreditCopyText)_
 
 GraphQL is language-agnostic. And it is more of a concept that can be implemented in any of the supporting languages such as Ruby, Java or Python based on the official _specifications_. However, in reality, the graphQL implementation, the developer community, and the tooling around the Javascript language is more robust and mature compared to all the other languages. That being said, Javascript/Typescript could be a better language to work with, to get the best out of a lot of available graphQL toolings.
 
-### Motivation
+## Motivation
 
 To break down the core concepts behind graphQL with the help of _graphQL.js_ by walking through _a simple graphQL implementation._
 
-### GraphQL Service Overview
+## GraphQL Service Overview
 
 In a simple graphQL service, the incoming query is parsed, and the query fields are executed and resolved against the schema to produce the result.
 
 ![](https://cdn-images-1.medium.com/max/800/1*0ilUAJ31T7cY4OgHtOMZ-Q.png)_GraphQL Service Overview_
 
-### Building a GraphQL Service
+## Building a GraphQL Service
 
 The first step into building and running a graphQL service is to define and build your schema. A schema holds the complete data type and also the data structure information. The schema can be represented in two ways:
 
@@ -29,13 +27,13 @@ The first step into building and running a graphQL service is to define and buil
 
 A simple graphQL service using _graphql.js_
 
-#### Schema Representation and Conversion
+### Schema Representation and Conversion
 
 In an ideal world, a graphQL schema is usually represented in the form of an SDL because it makes the schema more human-readable, but in order for the JS environment to understand and execute the SDL as a Javascript code, the SDL schema needs to be converted into an equivalent GraphQLSchema object.
 
 For example, this is the SDL representation of a simple schema:
 
-**#SDL Representation of Schema**
+**SDL Representation of Schema**
 
 ```js
 type Person {
@@ -64,7 +62,7 @@ There are two ways to make your GraphQLSchema object executable.
 
 It is also important to keep in mind that the GraphQLSchema constructor doesn’t accept any random type object, in fact, all your types should be constructed first before being used to build the schema. In our case, you can see that we have built a **_PersonType_** which is constructed from **_GraphQLObjectType_** class. In a similar fashion, you can also construct other [_types_](https://medium.com/r/?url=https%3A%2F%2Fgraphql.org%2Fgraphql-js%2Ftype%2F%23graphqlschema) based on their respective class definitions.
 
-### Running a GraphQL Service
+## Running a GraphQL Service
 
 A valid executable schema is all that you need to run a graphQL service and start listening to the incoming query requests. The entire process of accepting incoming queries and resolving them involves the following steps —
 
@@ -198,16 +196,15 @@ The recursive _field execution_ process continues until all the fields are resol
 
 **_Note:_** This process is explained for query execution and it's more or less identical for both mutations and subscriptions with some caveats. For mutations, the field execution happens serially, which means the field-resolution happens one after the other, whereas for queries it happens in parallel, where two or more sibling fields can resolve in any order.
 
-### Conclusion
+## Conclusion
 
 This could be overwhelming at first glance, but once you run the gist locally and start debugging the code, you will gain a better understanding of the entire process. I hope this article was helpful in understanding the basics of graphQL execution.
 
-[**rajeshdavidbabu/simple-graphql-execution**  
-\_Node script dealing with simple graphQL execution GraphQLSchema with graphql-js. npm install npm start For easy…\_github.com](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2Fsimple-graphql-execution "https://github.com/rajeshdavidbabu/simple-graphql-execution")[](https://github.com/rajeshdavidbabu/simple-graphql-execution)
+[**rajeshdavidbabu/simple-graphql-execution**](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2Fsimple-graphql-execution "https://github.com/rajeshdavidbabu/simple-graphql-execution")[](https://github.com/rajeshdavidbabu/simple-graphql-execution)
 
 ---
 
-### Further Reading
+## Further Reading
 
 > [Everything you need to know about graphQL (good comparison with REST](https://medium.com/@weblab_tech/graphql-everything-you-need-to-know-58756ff253d8)).
 

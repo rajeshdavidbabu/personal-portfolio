@@ -20,8 +20,7 @@ export const blogList: Array<BlogList> = [
   },
   {
     slug: "modular-architecture-react-ts",
-    title:
-      "Building a Scalable and Modular Architecture for React-TS Applications",
+    title: "Building a Scalable and Modular React-TS Architecture",
     publishDate: "05 Mar 2022",
     description:
       "An opinionated guide to modularizing your React-TS applications.",
@@ -84,7 +83,7 @@ export const blogList: Array<BlogList> = [
   },
   {
     slug: "array-vs-map-vs-set-vs-object",
-    title: "Array vs Set vs Map vs Object",
+    title: "Use cases for Array vs Set vs Map vs Object",
     publishDate: "29 Apr 2018",
     description:
       "Different data-structures and their real-time use cases in Javascript (ES6/ES7).",

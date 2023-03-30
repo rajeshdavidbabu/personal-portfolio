@@ -10,7 +10,7 @@ I am sure you would have read many articles about promises, but I promise (_pun 
 
 P.S: If you know the basics just skip to the sub-heading called **_‘Promises with multiple then methods’_** or if you are an expert jump to **_‘Order of execution of promise blocks’_**, you might see some surprises there.!!
 
-### Definition
+## Definition
 
 > Let’s keep the books and docs away for some time and put things in perspective. Promises are basically javascript objects used asynchronously.
 
@@ -20,19 +20,19 @@ On the same lines promises have three states:
 
 **_Pending, Resolved and Rejected.(I am sure the names are self-explanatory here)._**
 
-#### **Pending:**
+### Pending:
 
 Every promise created remains **indefinitely** in a pending state, unless it resolved or rejected. Period.!! This is the absolute truth. No arguing with it.
 
-#### Resolved:
+### Resolved:
 
 When the promise’s resolve method is called the promise takes up a resolved state. Resolve is essential for a promise to move on to execute its then method.
 
-#### Rejected:
+### Rejected:
 
 As the name suggests the promise moves on to rejected state from pending state if its rejected. And goes on to execute the catch method, where you can extract the error if there is any.
 
-### Syntax
+## Syntax
 
 Since we have moved on from ES5 to ES6, I am just gonna straightaway use the ES6 Syntax.
 
@@ -42,7 +42,7 @@ Since we have moved on from ES5 to ES6, I am just gonna straightaway use the ES6
 
 This syntax is pretty clean in ES6 than in ES5. I vaguely, remember mixing resolve and reject in the same then method, resulting in some very ugly and unreadable code. So, now we know how the syntax works in Promises. Let’s jump into different ways of using promises and unravel the secrets behind them.
 
-### Basic Promise With A Single Then Method
+## Basic Promise With A Single Then Method
 
 This is probably the simplest form of Promise you will ever come across and is the key to understanding how Promises really work. We have a simple promise constructor and when the promise is resolved it executes the resolved-callback/handler in the **then method**. The resolved handler is not called until the promise is resolved, in other words, it waits for the promises to be resolved. **_This is the key to the asynchronous nature of the Promises._**
 
@@ -50,15 +50,15 @@ This is probably the simplest form of Promise you will ever come across and is t
 
 Once the resolve method of the Promise constructor is called the resolve handler picks up the resolved value as an argument and prints it. Interestingly the then method doesn’t always behave this way in a Promise. Let’s see more of thens in the next section.
 
-### Promises With Multiple Then Methods
+## Promises With Multiple Then Methods
 
 Now that we have understood how Promises generally work, let’s look at how the then method works. As said above the then method accepts both resolve and reject handlers, but for the sake of simplicity, we are just going to use resolve handlers along with the then method.
 
-#### Then method following a Promise constructor
+### Then method following a Promise constructor
 
 Then methods following a Promise constructor or a Promise object doesn’t execute the resolve/reject handler until the Promise resolves/rejects. The then method attached to the Promise constructor is the first handler to get invoked on resolve/reject of the Promise. _(Refer to the image above)_
 
-#### Then method following another ‘then’ returning a value/reference
+### Then method following another ‘then’ returning a value/reference
 
 The then methods following other then methods have different behaviour for promises and generic methods. The seemingly-synchronous behaviour is when the previous then the method doesn’t return any promises. Looking at the example below,
 
@@ -68,11 +68,11 @@ Once the promises are resolved the then methods linked to the promises start exe
 
 > Note: one interesting behaviour of this is that when you do not return anything from the **previous then method,** x is undefined.
 
-#### Then method following another ‘then’ returning a Promise
+### Then method following another ‘then’ returning a Promise
 
 When a then method returns a promise in a sequence, the execution is suspended until this promise resolved/rejected. This is otherwise called as **‘Promise Chaining’**, let’s see about it in the next section.
 
-### Promise Chaining
+## Promise Chaining
 
 This is the core of Promise usage and possibly something which you need to understand before you can understand concepts around Async/await and Redux-sagas. Let’s take a deep dive.
 
@@ -84,7 +84,7 @@ Let’s look at a more detailed example to understand further. In the following 
 
 ![](https://cdn-images-1.medium.com/max/800/1*eyjkBeusmhUsMUbWlaZJKA.png)_Chaining promises_
 
-#### Explanation
+### Explanation
 
 1.  The promise1 is built with a constructor, and will automatically move to a pending state until resolved or rejected. At the instance of creation, this promise is still pending, which will get resolved after one second.
 2.  Similarly, promise2 and promise3 will also be pending, which will get resolved after 2 and 3 seconds respectively. _(we will see the order of resolutions in coming sections, don’t worry about it now)_
@@ -95,7 +95,7 @@ Let’s look at a more detailed example to understand further. In the following 
 
 At first, the example might be a bit harder to understand, give it a good 10 minute read to wrap your head around it. Let it sink in before you move on to the next section.
 
-### Promise Pyramid or Nested Promises
+## Promise Pyramid or Nested Promises
 
 The promise chain grows linearly from the top-down, but only problem in this approach is that we do not have access to the variables between different then methods or between different promise blocks.
 
@@ -117,7 +117,7 @@ _( You can try rejecting the promise2 and verify whether catch method successful
 
 Sometimes nesting promises become inevitable which will inevitably lead to the callback hell we talked about, hence to tackle this issue ES7 has come up with Async/await. Be sure to check it out when you have time.
 
-### Order of Execution of Promise Blocks
+## Order of Execution of Promise Blocks
 
 Once you have mastered the nesting and chaining of promises, its now time to understand how promise execution works. Many developers think that promises would **_always wait till they are called or made use of_**, but that’s just wrong understanding of promises. A promise would try to resolve/reject it self as soon as possible, if it can.
 
@@ -130,7 +130,7 @@ Let’s look at an example to understand better,
 
 ![](https://cdn-images-1.medium.com/max/800/1*UDoMTG8fQKp5SsKAHJ7TOA.png)_Order of execution of promise blocks_
 
-#### Explanation
+### Explanation
 
 1.  promise1, promise2 and promise3 are initialised and they are racing towards resolve/reject in time. Currently, it is zeroth second.
 2.  In the1st second, all three promises are pending.
@@ -140,7 +140,7 @@ Let’s look at an example to understand better,
 6.  In the 3rd second the promise 3 is still pending because it needs two more seconds to be resolved.
 7.  After 5th second all three promises are resolved.
 
-### Catching errors in Promises
+## Catching errors in Promises
 
 Catching an error is pretty straightforward in promises, a catch method at the end of a promise block should do the trick. It handles both, when an error is **thrown** and when its **rejected**.
 
@@ -148,11 +148,11 @@ But throwing errors has its limitations in asynchronous coding, when we throw an
 
 Also, you can reject a promise in any of its attached then methods by simply returning a **_Promise.reject(customErrorValue);_**
 
-### Promise.all() vs Promise.race()
+## Promise.all() vs Promise.race()
 
 **Promise all** resolves/rejects all the promises that are passed as an iterable before calling the then handler with an **_iterable result_**, whereas **Promise race** condition resolves/rejects the fastest promise that it can resolve/reject. [Read](https://medium.com/r/?url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FPromise%2Fall) more on the official docs.
 
-### **Anti-patterns**
+## **Anti-patterns**
 
 There are many anti-patterns which you can avoid in a promise, but the main culprit is **not returning promises and values** properly. In a synchronous sequence of then methods following a Promise block, if a value is not returned from the previous then method it will not appear in the next occurring then.
 
@@ -164,16 +164,10 @@ Similarly, when we use a promise chaining, we need to return the promises. When 
 
 > **Note:** Only in the promise constructor block you do not have to explicitly return a resolve/reject. Apart from that, in the consecutive then methods, every value and promise chained needs to be returned, for accessing it further down the block.
 
-### Bonus Coding Challenge
+## Bonus Coding Challenge
 
 If you are interested in a Promise challenge, you can continue reading this para. Let’s assume that we have a for loop that prints 0 to 10 at random intervals (0 to 6 seconds). We need to modify it using promises to print sequentially 0 to 10. For example, if 0 takes 6 seconds to print and 1 takes two seconds to print, then 1 should wait for 0 to print and so on.
 
-Hint: Use for loop to chain promises :).
+## Conclusion
 
-Feel free to drop your solutions in the responses below.
-
----
-
-### Conclusion
-
-Understanding Promises is the first step towards understanding Async/await and solving challenges faced in Promises using the ES7 alternatives. If you think that this was worth your time follow me on [GitHub](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu).
+Understanding Promises is the first step towards understanding Async/await and solving challenges faced in Promises using the ES7 alternatives. If you think that this was worth your time follow me on [GitHub](https://github.com/rajeshbabu-oviva).

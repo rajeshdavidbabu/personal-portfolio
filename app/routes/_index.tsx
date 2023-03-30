@@ -37,19 +37,48 @@ export default function Index() {
           </p>
         </StaggerChild>
         <br />
+        <StaggerChild>
+          <p className="text-lg md:text-xl">
+            Find me on{" "}
+            <a
+              href="https://www.linkedin.com/in/rajesh-babu-56270046/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Linkedin
+            </a>
+            {", "}
+            <a
+              href="https://twitter.com/razzmattazzz"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Twitter
+            </a>
+            {" or "}
+            <a
+              href="https://github.com/rajeshbabu-oviva"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
+            .
+          </p>
+        </StaggerChild>
         <br />
         <StaggerChild>
           <p className="text-lg md:text-xl">
             Do you like my template ?
             <br />
-            Check out the codebase on{" "}
+            Check out the{" "}
             <a
               href="https://github.com/rajeshbabu-oviva/remix-mdx-blog"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
-            </a>{" "}
+              codebase
+            </a>
             .
           </p>
         </StaggerChild>

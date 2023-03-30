@@ -2,15 +2,13 @@
 title: Code-splitting react-i18n locales using dynamic imports
 ---
 
-## Overview
-
 Implementing internationalisation could be a daunting task for your frontend projects, but luckily tools like i18n make our lives easier by offering useful APIs that help us move forward quickly.
 
-**\*Disclaimer**: This article expects you to be already aware of some basic concepts around react, localization, webpack, and i18n.\*
+**Disclaimer**: This article expects you to be already aware of some basic concepts around react, localization, webpack, and i18n.
 
 **_TLDR;_**
 
-[\*\*GitHub - rajeshbabu-oviva/react-i18n-codesplitting-locales](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales)
+[GitHub - rajeshbabu-oviva/react-i18n-codesplitting-locales](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales)
 
 ![Photo by [Tim Mossholder](https://unsplash.com/@timmossholder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/split?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)](https://cdn-images-1.medium.com/max/13200/1*_5t29_HeW6e4Smbctn_ooA.jpeg)_Photo by [Tim Mossholder](https://unsplash.com/@timmossholder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/split?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)_
 
@@ -26,7 +24,7 @@ If you are using a module bundler like webpack, the rudimentary implementation o
 
 Imagine your app is being loaded for a single language, the JSON files for the other two languages are also part of your main.js bundle, although this might not be a problem for smaller applications, as your applications scale and the number of languages you support increases, then this rudimentary implementation would slowly eat up into your performance budgets.
 
-Hence, a better solution would be to load only the required locale files or load them on demand. And this can be achieved via a concept called [\*\*\*Code-splitting](https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting)\*\*\*.
+Hence, a better solution would be to load only the required locale files or load them on demand. And this can be achieved via a concept called [Code-splitting](https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting).
 
 ## Code-splitting
 
@@ -57,7 +55,7 @@ When we use dynamic imports to load the file, we should be aware of race conditi
 
 We can use _React.lazy_ in combination with _Suspense_ to await the dynamic imports before actually using the useTranslation [here](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales/blob/master/src/App.tsx#L4).
 
-Alternatively, we can also use the _I18nProvider_ to pass on the value of the i18n object, with *Suspense *to await the loading of the resources as shown [here](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales/blob/master/src/AppWithI18nProvider.tsx).
+Alternatively, we can also use the _I18nProvider_ to pass on the value of the i18n object, with _Suspense_ to await the loading of the resources as shown [here](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales/blob/master/src/AppWithI18nProvider.tsx).
 
 If the useTranslation hook is called earlier before the resources are available, you might end up with a warning of this sort —
 
@@ -85,7 +83,7 @@ And you should see the following information about the current dev-server's dist
 
 And when you load the application initially and also switch the languages you should be able to see these chunks (_src_locales_ja_json.js_ etc.,) downloaded from the network tab.
 
-When we visit [\*http://localhost:3000](http://localhost:3000)/?language=ja, \*we only load the language JSON information meant for Japanese and not English and French.
+When we visit [http://localhost:3000/?language=ja](http://localhost:3000/?language=ja), we only load the language JSON information meant for Japanese and not English and French.
 
 > This is essentially code-splitting based on dynamic imports in action.
 
@@ -95,7 +93,7 @@ Now that we see that the code-splitting is in action, let's see how the project 
 
 ### Without Code-splitting
 
-Let's go ahead and modify our [\*i18n.ts](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales/blob/master/src/i18n.ts)\* file with the following code —
+Let's go ahead and modify our [i18n.ts](https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales/blob/master/src/i18n.ts) file with the following code —
 
 ```js
 import i18n from "i18next";
@@ -120,7 +118,7 @@ export const init = () => {
 export default i18n;
 ```
 
-And visiting [\*http://localhost:3000/webpack-dev-server](http://localhost:3000/webpack-dev-server) \*would give us the following result —
+And visiting [http://localhost:3000/webpack-dev-server](http://localhost:3000/webpack-dev-server) would give us the following result —
 
 ![Assets without code-splitting](https://cdn-images-1.medium.com/max/2208/1*FmOjpT62DFm0-sToUyfkwA.png)_Assets without code-splitting_
 

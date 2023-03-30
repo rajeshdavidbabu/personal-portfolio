@@ -1,18 +1,14 @@
 ---
-title: Array vs Set vs Map vs Object — Real-time use cases in Javascript (ES6/ES7)
+title: Use cases for Array vs Set vs Map vs Object
 ---
 
-## Overview
-
-The internet is a great place to find information, but there is one teeny-tiny problem. You are on a boat in the middle of a deep blue sea. Although most of us do not venture all the way down into the darkness, we still precisely like to get what we want. (Oh! The Internet is the deep blue sea I was talking about).
+The internet is a great place to find information, but there is one teeny-tiny problem. You are on a boat in the middle of a deep blue sea. Although most of us do not venture all the way down into the darkness, we still precisely like to get what we want.
 
 ![Ocean Fishing](https://miro.medium.com/v2/resize:fit:1400/1*zv0VzEqlCXAKAt_iZvDzcA.jpeg)_Ocean Fishing_
 
 _As frontend developers most of the times we do not rely on vanilla javascript for everything that we want. Most of the times we pledge our allegiance to our lords (frameworks) and libraries and follow them blindly because we think that they are capable of doing everything, sometimes losing out on javascript best practices._
 
 Recently, I got the chance to work on a backbone application where _I understood the primary importance of selectively using javascript built-in objects for our operations regardless of the framework_. And got to learn the built-in data-structures of our JS ecosystem and thought about putting all of them down in writing.
-
----
 
 ## 1\. Search/Find
 
@@ -38,7 +34,7 @@ array.indexOf("one"); // returns 1 as index
 object[2]; // returns the value of key 2 (i.e {name: "two"}
 ```
 
-> Note: When using n-operations to find an object, its always best to use object key for retrieving the item rather than array find.
+> Note: When using n-operations to find an object, its always best to use object key for retrieving the item rather than array find. Checkout the [Benchmark Results](https://www.measurethat.net/Benchmarks/Show/8079/0/object-key-access-vs-array-find#latest_results_block).
 
 ### Set
 
@@ -68,8 +64,6 @@ map.get(1); // returns 'one'
 ```
 
 > **Note**: Maps can be very flexible in places where objects can be a bit annoying, and it strongly serves the purpose in some specific scenarios, like adding and deleting key-pairs frequently.
-
----
 
 ## 2\. Sort
 
@@ -175,8 +169,6 @@ const sortedMap = new Map([...map.entries()].sort()); // returns sorted Map(3) {
 
 > Note: In the map sorting, it is important to know that the two-dimensional array from the map gets sorted based on the first element in each sub-array. Here the sorting is based on “a”, “b” and “c” strings. If these were numbers, you would have to use a comparator.
 
----
-
 ## 3\. Includes or Has
 
 One of the most important features of the iterable objects is to check the presence of the desired item. Almost, all of the built-in standard and iterable javascript objects have their own implementation to achieve this. Let’s look at them below.
@@ -238,8 +230,6 @@ map.has("3"); // returns false because types don't match
 ```
 
 > Note: Compared to the array’s includes function, Object’s hasOwnProperty and Set/Map’s has functions seem to perform close to O(1) in different tests, clearly more efficient in terms of larger data sets.
-
----
 
 ## 4\. Removing Duplicates
 
@@ -305,8 +295,6 @@ const map = new Map([
 console.log(map); // returns {3 => "three", 2 => "four"}
 ```
 
----
-
 ## 5\. Delete
 
 ### Array
@@ -355,8 +343,6 @@ map.delete('2'); // returns false as types do not match
 
 ```
 
----
-
 ## 6. Length and Size
 
 ```js
@@ -374,8 +360,6 @@ new Map([
   ["b", "two"],
 ]).size; // returns 3
 ```
-
----
 
 ## Conclusion
 

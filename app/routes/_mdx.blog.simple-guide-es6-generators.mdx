@@ -23,9 +23,7 @@ new Set(\[1, 2])[Symbol.iterator]()// SetIterator {1, 2}
 
 **By the end of this post, I am positive that you will have a solid understanding of how function Generators work**. If you are a pro, please help me improve the content by adding your comments in the responses. Just in case if you have difficulty following the code, I have also added explanation for most of the code to help you understand better.
 
----
-
-### Introduction
+## Introduction
 
 Functions in JavaScript, as we all know, **_“run until return/end”. Generator Functions_** on the other hand, **_“run until yield/return/end”._** Unlike the normal functions **Generator Functions** once called, returns the **Generator Object,** which holds the entire **Generator Iterable** that can be iterated using **next()** method or **for…of** loop.
 
@@ -52,7 +50,7 @@ _(If you feel that its a bit over your head, you will get more clarity once you 
 
 > **Note:** In the above example the **generator function** accessed directly without a wrapper always executes only until the first yield. Hence, by definition you need to assign the Generator to a variable to properly iterate over it.
 
-### Lifecycle of a Generator Function
+## Lifecycle of a Generator Function
 
 Before we proceed further, let’s take a quick look at the block diagram of the Generator Function’s life-cycle:
 
@@ -64,7 +62,7 @@ Each time a **_yield_** is encountered the generator function returns an object 
 
 _Read further to understand the block diagram better._
 
-### Assigning Yield to a Variable
+## Assigning Yield to a Variable
 
 In the previous code sample we saw an introduction to creating a basic generator with a yield. And got the expected output. Now, let’s assume that we assign the entire yield expression to a variable in the code below.
 
@@ -76,7 +74,7 @@ In the previous code sample we saw an introduction to creating a basic generator
 
 With this in mind, let’s jump to the next section to understand more about passing argument to the next() method.
 
-### Passing Arguments to the next() Method
+## Passing Arguments to the next() Method
 
 With reference to the block diagram above, let’s talk about passing arguments into the next function. **_This is one of the most trickiest part of the whole generator implementation_**.
 
@@ -86,7 +84,7 @@ Let’s look at the code below in the console. And the explanation right after t
 
 ![](https://cdn-images-1.medium.com/max/800/1*aYCKrAkgSyfEeN9cswZzbA.png)_Passing arguments to the next()_
 
-#### Explanation:
+### Explanation:
 
 1.  When we call the **_first next(20)_**, every line of code till the first yield is printed. As we do not have any previous yield expression this value 20 is discarded. In the output we get yield value as i10, which is 100 here. Also the state of the execution stops with first yield and the **_const j_** is not yet set.
 2.  The second **_next(10)_** call, replaces the entire first yield expression with 10, imagine **_yield (i 10) = 10,_** which goes on to set the value of **_const j to 50_** before returning the second yield’s value. The yield value here is **_2 50 / 4 = 25_**.
@@ -94,19 +92,19 @@ Let’s look at the code below in the console. And the explanation right after t
 
 > **This might be bit overwhelming for the first time readers, but take a good 5 minutes to read it over and over again to understand completely.**
 
-### Passing Yield as an Argument of a Function
+## Passing Yield as an Argument of a Function
 
 There are n-number of use-cases surrounding yield regarding how it can be used inside a function generator. Let’s look at the code below for one such interesting usage of yield, along with the explanation.
 
 ![](https://cdn-images-1.medium.com/max/800/1*Y6pwTwJ7stPZzAeCKBfv4Q.png)_Yield as an argument of a function_
 
-#### Explanation
+### Explanation
 
 1.  The first next() yields undefined value because yield expression has no value.
 2.  The second next() yields “I am usless”, the value which was passed. And prepares argument for function call.
 3.  The third next(), calls the function with an **_undefined_** argument. As mentioned above, the next() method called without any arguments essentially means that the **_entire previous yield expression is undefined_**. Hence, this prints **_undefined_** and finishes the run.
 
-### Yield with a Function Call
+## Yield with a Function Call
 
 Apart from returning values yield can also call functions and return the value or print the same. Let’s look at the code below and understand better.
 
@@ -114,7 +112,7 @@ Apart from returning values yield can also call functions and return the value o
 
 The code above returns the function’s return obj as the yield value. And ends the run by setting **_undefined_** to the **_const user_**.
 
-### Yield with Promises
+## Yield with Promises
 
 Yield with promises follows the same approach as the function call above, instead of returning a value from the function, it returns a promise which can be evaluated further for success or failure. Let’s look at the code below to understand how it works.
 
@@ -122,7 +120,7 @@ Yield with promises follows the same approach as the function call above, instea
 
 The apiCall returns the promises as the yield value, when resolved after 2 seconds prints the value we need.
 
-### Yield
+## Yield
 
 So far we have been looking at the use cases for yield expression, now we are going to look at another expression called **_yield_**_._ **_Yield_** when used inside a generator function delegates another generator function. Simply put, it synchronously completes the generator function in its expression before moving on to the next line.
 
@@ -130,7 +128,7 @@ Let’s look at the code and the explanation below to understand better. This co
 
 ![](https://cdn-images-1.medium.com/max/800/1*eMlOmBoi2XGCE3qwUIj3qA.png)_Basic yield_
 
-#### Explanation
+### Explanation
 
 1.  The first next() call yields a value of 1.
 2.  The second next() call, however, is a **_yield expression_**, which inherently means that we are going to complete another generator function specified in the **_yield expression_** before continuing the current generator function.
@@ -148,7 +146,7 @@ function* g2() {
 
 > This will go on to finish the generator run. However, there is one distinct ability of the **_yield_** which you should keep in mind while using **_return_**, in the next section.
 
-### Yield with Return
+## Yield with Return
 
 Yield with a return behaves a bit differently than the normal yield. When yield is used with a return statement it evaluates to that value, meaning the entire yield function() becomes equal to the value returned from the associated generator function.
 
@@ -156,14 +154,14 @@ Let’s look at the code and the explanation below to understand it better.
 
 ![](https://cdn-images-1.medium.com/max/800/1*HxJtIuXhBnOMAK0cwVElsQ.png)_Yield with return_
 
-#### **Explanation**
+### **Explanation**
 
 1.  In the first next() we go straight to the yield 1 and return its value.
 2.  The second next() yields 2.
 3.  The third next(), **_returns ‘foo’_** and goes on to yield the ‘the end’, assigning ‘foo’ to the **_const result_** on the way.
 4.  The last next() finishes the run.
 
-### **Yield with a Built-in Iterable Object**
+## **Yield with a Built-in Iterable Object**
 
 There is one more interesting yield property worth-mentioning, similar to the return value, **_yield_** can also iterate over iterable objects like Array, String and Map.
 
@@ -173,7 +171,7 @@ Let’s look at how it works in real-time.
 
 Here in the code the yield iterates over every possible iterable object that is passed as its expression. I guess the code itself is self-explanatory.
 
-### Best Practices
+## Best Practices
 
 On top of all this, every iterator/generator can be iterated over a **for…of** loop. Similar to our next() method which is called explicitly, for…of loop internally moves on to the next iteration based on the **_yield keyword_**. And it iterates only till the **_last yield_** and doesn’t process the return statements like the next() method.
 
@@ -183,8 +181,6 @@ You can verify the same in the code below.
 
 > The final return value is not printed, because for…of loop iterates only till the last yield. So, it comes under best practice to avoid return statements inside a generator function as it would affect the reusability of the function when iterated over a **for…of**.
 
----
-
-### Conclusion
+## Conclusion
 
 I hope this covers the basic use-cases of generator functions and I sincerely hope that it gave a better understanding of how generators work in JavaScript ES6 and above.

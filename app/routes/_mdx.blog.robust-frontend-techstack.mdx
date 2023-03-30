@@ -8,9 +8,7 @@ At the time of writing this article, the frontend world is still a _wild west_ o
 
 Hence, we have to have some sense of awareness and responsibility while choosing a tech stack and this article is going to help with that.
 
----
-
-### Choosing Core Technologies
+## Choosing Core Technologies
 
 An application architecture consists of several parts that make our application meaningful, extensible and deployable. Whilst building a frontend architecture, it's of utmost importance to choose a _core library_ and a _core language_ before we choose the rest of the tech stack.
 
@@ -32,9 +30,7 @@ The choice of technology always comes with its own pros and cons, however to som
 
 > you have to be opinionated and intelligently biased towards the tools you use.
 
----
-
-### Building A Frontend Architecture
+## Building A Frontend Architecture
 
 With the above factors in mind, I have chosen the following core technologies  
  **React** — *Core library*  
@@ -44,17 +40,15 @@ The following illustration offers a simple perspective into building a simple ye
 
 ![](https://cdn-images-1.medium.com/max/800/1*9PZVIAX9paBBqoiDHP_57Q.png)_A Simple React-TS based Architecture._
 
----
-
-### Finally — Our Tech Stack
+## Finally — Our Tech Stack
 
 With the aforementioned architecture in mind, let’s take a quick look at the tech stack that could help us achieve it —
 
-#### Environment
+### Environment
 
 **_node(v14+)_** and **_npm(v7+)_** — development and package _environment_.
 
-#### Core Libraries
+### Core Libraries
 
 **_react.js(v17+)_** — *core library* for the project.  
 **_react-dom_** — dom APIs for react.  
@@ -63,11 +57,11 @@ With the aforementioned architecture in mind, let’s take a quick look at the t
 **_react-hook-form_** — form library based on hooks.   
 **_react-error-boundary_** — error boundary to catch rendering errors.
 
-#### Core Language
+### Core Language
 
 **_typescript(v4+)_** — *core language* used for development.
 
-#### Bundler
+### Bundler
 
 **_webpack(v5)_** — helps us _bundle_ our project into single/multiple js chunks.  
 **_webpack-cli_** — enables us to use the webpack command in the npm scripts.  
@@ -97,11 +91,11 @@ With the aforementioned architecture in mind, let’s take a quick look at the t
 **_@typescript-eslint/eslint-plugin_** — enables eslint for TS code.  
 **_@typescript-eslint/parser_** — enables parsing of TS.
 
-#### Formatter
+### Formatter
 
 **_prettier(v2+)_** — *formatter* that works with eslint plugins.
 
-#### Test Environment
+### Test Environment
 
 **_jest_** — test environment to build and run our unit and snapshot tests.  
 **_@testing-library/react_** — complete React DOM testing utilities.  
@@ -109,21 +103,21 @@ With the aforementioned architecture in mind, let’s take a quick look at the t
 **_@testing-library/jest-dom_** — custom jest matchers to test the state of the DOM.  
 **_@testing-library/user-event_** — fires user events for our test cases.
 
-#### Internationalization
+### Internationalization
 
 **_i18next_** — internationalization framework for JS.  
 **_i18next-browser-languagedetector_** — helps us detect browser language.  
 **_react-i18next_** — internationalization APIs for react.
 
-#### Component Library
+### Component Library
 
-***@chakra-ui/react* —** component library helper to build reusable components.**_@emotion/react —_** *css-in-js* library for react.**@emotion/styled —** styled APIs for emotion-based react components.**  
-@framer-motion** — animation library for react.  
+**_@chakra-ui/react_** — component library helper to build reusable components.
+**_@emotion/styled_** —styled APIs for emotion-based react components.
+**_@emotion/react_** — css-in-js library for react.
+**_@framer-motion_** — animation library for react.
 **_@chakra/icons_** — icon package for chakra-ui.
 
----
-
-### Conclusion
+## Conclusion
 
 In this _tech-stack_ above not all of them are production _dependencies_, only some are, for example — react, its supporting libraries, internationalization, chakra-ui and @babel/runtime-corejs3 are dependencies. And everything else is a [_development dependency_](https://medium.com/@dylanavery720/npmmmm-1-dev-dependencies-dependencies-8931c2583b0c#:~:text=The%20difference%20between%20these%20two,are%20also%20required%20at%20runtime.).
 

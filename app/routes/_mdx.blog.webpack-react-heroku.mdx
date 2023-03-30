@@ -12,11 +12,9 @@ If you are new to **Heroku**, please check out the [link](https://medium.com/r/?
 
 > In this post, I am going to quickly cover how to make an existing **Webpack** application deployment ready, (irrespective of the frontend libraries **React** or **Vue** **JS**) and help deploy your code on your **Heroku** account, in three simple steps. I have also attached my code repo at the end of the post, please feel free to clone/fork and play around with it.
 
----
-
 **_Assuming that you already have a working Webpack application, let’s get into making it deployment ready for Heroku._**
 
-### **1. Build an express server**
+## 1. Build an express server
 
 The first step is to build a simple express server to serve your application. _What is an Express server you ask?_
 
@@ -43,13 +41,13 @@ app.get("*", (req, res) => {
 app.listen(port);
 ```
 
-#### Explanation
+### Explanation
 
 1.  **_\_\_dirname_** points to the current directory from where the **_server.js_** is being run from and that is treated as the root of your project.
 2.  When we tell the express app to use a directory it automatically picks up the index.html file to serve.
 3.  We have also added an extra check to redirect the users back to index.html to avoid ‘not found’ errors and for the sake of simplicity.
 
-### 2. Webpack Production Build
+## 2. Webpack Production Build
 
 This is a crucial step for us and it ensures that our application properly spits out a bundled js which we can use for deployment.
 
@@ -82,7 +80,7 @@ In my case I do not use a **_\[htmlWebpackPlugin\]_**, instead I have a predefin
 
 > **Note**: At this stage if you are not clear on what I am talking about, please download the code repo at the end of this post and check out the **webpack.config.js** file.
 
-### **3. Verify and deploy**
+## **3. Verify and deploy**
 
 If you have successfully generated the bundled js file either in the **_/dist_** folder or in your custom location and made sure that your generated/pre-defined **_index.html_** has a script tag pointing to the bundled js**_(main.js / bundle.js), you are now ready to ready to deploy your application._**
 
@@ -107,7 +105,7 @@ Now that we are here finally, close to deployment, we need to add two lines of s
 
 **_Note_:** Please replace the existing **“start”** command with **“dev”** and continue running dev server using **npm run dev** instead of **start**.
 
-#### Explanation
+### Explanation
 
 > **Heroku** automatically installs all our dependencies and goes on to do a **post-build** operation before serving our application. In this post-build operation, we do the production bundling of our js files and allow Heroku to kick-start the application by running the **start** command.
 
@@ -129,7 +127,7 @@ git add . && git commit -m "initial commit"
 git push heroku master
 ```
 
-#### Explanation
+### Explanation
 
 1.  Heroku login prompts you to enter username and password.
 2.  Heroku create command creates an application and gives you back the application URL and Heroku’s git repo for your project.
@@ -140,9 +138,7 @@ git push heroku master
 
 Visit your application URL generated at step 2, during Heroku create, you should be able to view your application. Voila !! your app is deployed :)
 
----
-
-### Conclusion
+## Conclusion
 
 This should work for all the **Webpack** applications, irrespective of their frontend library, based on your web pack config file. The key thing to note here is your **_package.json_** file, make sure all the dependencies and dev-dependancies are part of it including **Webpack**.
 

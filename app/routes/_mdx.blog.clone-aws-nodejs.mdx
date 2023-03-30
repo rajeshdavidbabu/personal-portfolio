@@ -4,34 +4,9 @@ title: "How I built a Node.js Service to Clone my AWS S3 Buckets"
 
 ![](https://cdn-images-1.medium.com/max/800/1*7pNMMZbTGFovZSlL9b10ew.jpeg)_Photo by [Malte Wingen](https://medium.com/r/?url=https%3A%2F%2Funsplash.com%2Fphotos%2F4AG-k7KeNOg%3Futm_source%3Dunsplash%26utm_medium%3Dreferral%26utm_content%3DcreditCopyText) on [Unsplash](https://medium.com/r/?url=https%3A%2F%2Funsplash.com%2Fsearch%2Fphotos%2Fnode-js%3Futm_source%3Dunsplash%26utm_medium%3Dreferral%26utm_content%3DcreditCopyText)_
 
-**TL;DR** — *Get straight to the code !!!*
+## Introduction
 
-[**rajeshdavidbabu/Node-Clone-S3-Bucket**  
-\_Clones S3 Bucket or any of its directory recursively and locally. — rajeshdavidbabu/Node-Clone-S3-Bucket_github.com](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2FNode-Clone-S3-Bucket "https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket")[](https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket)
-
-### Introduction
-
-#### Node.js
-
-Node.js has been in the market for quite some time, as a Javascript developer, it is only fair that you learn how it works by now. Contrary to popular frontend developer’s belief, Node.js is not a library, instead, its an eco-system or more so like a platform on which you can run Javascript and the best part is that you get access to various _I/O operations_.
-
-> All the frontend javascript runs on the browser with the help of V8 and the browser environment itself, likewise, Node.js involves a V8 engine and Libuv.
-
-> If you are an absolute starter on Node.js, please go through this write-up to get an overall understanding of [**_why and how to Node.js_**](https://medium.com/r/?url=https%3A%2F%2Fcodeburst.io%2Fthe-only-nodejs-introduction-youll-ever-need-d969a47ef219)**_?_**
-
-Since this write-up is about building a fully-functional Node.js application, we would not go deep into the basics and quickly touch upon the key points to look out for and also a bit of insight into the application itself.
-
-#### AWS (Amazon Web Services)
-
-> AWS is a cloud-based eco-system where you can manage the whole infrastructure of your applications without needing any physical hardware or server.
-
-In short, AWS offers a wide range of solutions for companies seeking to store data, access data, run servers, scale their existing services and much more. Out of these services, one of the most important and simplest service is S3(Simple Storage Service). The S3 not only offers block-storage space, meaning that you can store any file format on it but also comes with a set of REST APIs through which you can make CRUD operations.
-
-T*hese two technologies mentioned above, make a powerful combination in the industry for various use cases when your Node.js application needs to randomly store and retrieve files, store executables or any other data format that is not supported by an ACID complaint DB such as SQL DBs. In short, it’s a file storage system where you can store any type of data and easily access them.*
-
-### What’s this project about?
-
-> **_This project is basically building a Node.js application to clone your S3 bucket locally and recursively._**
+> **_This project is basically building a Node.js application to clone your AWS S3 buckets locally and recursively._**
 
 _TBH, this project is a one-liner using the AWS-CLI. Yes, you heard it right. So why are we doing it anyway?_
 
@@ -47,7 +22,9 @@ aws s3 cp s3://my-s3-bucket/ ./ --recursive
 
 I am positive that this would give you a better understanding of how a Node.js application should look and feel, in spite of its size and operation.
 
-### What can you expect out of this writeup?
+> **TLDR;** — Get straight to the code  [**Node-Clone-S3-Bucket**](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2FNode-Clone-S3-Bucket "https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket")[](https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket)
+
+## Table of Contents
 
 As I said above, I am not gonna explain the code line-by-line, as I am posting the entire base out. Instead, I will talk about how I have architected the application, with a bit of insight into the core-logic and key features. Let me list out what you can expect and get an idea by the end of this write-up.
 
@@ -57,13 +34,7 @@ As I said above, I am not gonna explain the code line-by-line, as I am posting t
 - **_Using AWS-SDK to access S3 APIs_**
 - **_Entire Codebase_**
 
-### Before we start
-
-Before we jump the guns, let’s ask why do we call this a service and not a server. I call this a service because it just does one job and no external entities are sending requests to our running service, if they were to send the request to our application, then I would probably call this a server if it’s listening on a port.
-
-> When I was a junior frontend developer, I always thought that Node.js applications were made only of a single server file and thought that the code would always be messy, while that is true to some extent, I later learnt that that’s not how it should be. As a responsible developer, we should always aim to keep the files as small as possible and separate the concerns properly. That’s the key to developing a scalable Node.js application.
-
-### Project Structure
+## Project Structure
 
 There is no opinionated approach for building the project structure, it can change from project to project based on the use case. Personally, I split them into smaller independent modules. One module does one type of task and one type of task only.
 
@@ -77,7 +48,7 @@ As I said before, there is no particular way to structure your project but its i
 
 Let’s start from the root and go step by step.
 
-#### Application Dependencies
+### Application Dependencies
 
 These are project dependencies and are essential for development and deployment. And are mostly straight forward to understand:
 
@@ -89,7 +60,7 @@ These are project dependencies and are essential for development and deployment.
 
 And then comes the **_config_** file, the **_config_** file consists of all your application config, api*keys, bucket name, target directory, third party links etc., normally we would have two config files one for production* and one for the _development_ environment.
 
-#### Core Entities
+### Core Entities
 
 Once we made the skeleton of the application ready with the application dependencies, then we have the core entities. In our application, the Core entities include Handler, Service and Storage.
 
@@ -99,7 +70,7 @@ Once we made the skeleton of the application ready with the application dependen
 
 > **_Storage_** is where all our storage operations take place. In our application S3 is the external storage from where we retrieve our files and data from, hence the AWS-SDK operations exclusively happen only inside this storage module.
 
-#### Helpers and Utils
+### Helpers and Utils
 
 When the service starts to run it needs to do all the intended tasks at the same time. For example, in our application, once we get the list of contents under a directory, we need to start creating/cloning the contents locally. This operation is delegated to **_cloner.js_**, a helper which is only responsible for cloning the files and folders. The cloner, in turn, needs to access the **_fileOps.js_** module to create directories and files.
 
@@ -117,7 +88,7 @@ When the service starts to run it needs to do all the intended tasks at the same
 
 > **_Logger_** _inside utils returns an instance of Bunyan logger which can be used to send logs to third parties like Kibana._
 
-### Core Logic Surrounding the Application
+## Core Logic Surrounding the Application
 
 Now that we have done our project setup, let’s look into the core logic of the **_service_** module. It involves the sequence of the following actions:
 
@@ -128,7 +99,7 @@ Now that we have done our project setup, let’s look into the core logic of the
 
 > Additionally, the service not only clones the entire bucket but also clones only specific folders, without losing the folder tree structure, based on our Prefix configuration as specified [here](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2FNode-Clone-S3-Bucket%23configuration) as the rootDirectory for cloning.
 
-### Downloading Files Using Streams
+## Downloading Files Using Streams
 
 Another important concept around the Node.js is using streams to upload and retrieve data from an external source. In our project, the external source is the AWS S3.
 
@@ -140,17 +111,16 @@ Our code inside **_storage_** module as shown below uses streams to asynchronous
 
 To dig deeper into Node.js streams, please refer to this write up [here](https://medium.com/r/?url=https%3A%2F%2Fmedium.freecodecamp.org%2Fnode-js-streams-everything-you-need-to-know-c9141306be93).
 
-### Using AWS SDK to access S3
+## Using AWS SDK to access S3
 
 This is the most straight forward topic in the whole application, where you install the **_AWS-SDK_** and start accessing the methods in it. Taking a look at the **_storage_** file would give you a better understanding of how to import and call methods on the same.
 
-### The Codebase of the Application.
+## The Codebase of the Application.
 
 Here you can find the entire code for this application, more than reading this, hands-on would give a great deal of information and help you understand the core concepts of this application. Feel free to fork it, play with it and if you like it leave a star on the repo.
 
-[**rajeshdavidbabu/Node-Clone-S3-Bucket**  
-\_Clones S3 Bucket or any of its directory recursively and locally. — rajeshdavidbabu/Node-Clone-S3-Bucket_github.com](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2FNode-Clone-S3-Bucket "https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket")[](https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket)
+[**Node-Clone-S3-Bucket**](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Frajeshdavidbabu%2FNode-Clone-S3-Bucket "https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket")[](https://github.com/rajeshdavidbabu/Node-Clone-S3-Bucket)
 
-### Conclusion
+## Conclusion
 
 This marks the end of this write-up, hope it gave a better understanding of how to plan, build and run a Node.js service in real-time on a platform such as AWS.
