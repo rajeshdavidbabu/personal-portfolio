@@ -35,7 +35,7 @@ export const meta: MetaFunction = () => ({
   title: "Raj's Personal Website",
   "og:title": "Raj's Personal Website",
   "og:description":
-    "A Personal Portfolio Rajesh Babu, where you can read his blogs and find his social links.",
+    "A Personal Portfolio Rajesh Babu, where you can read his blog-posts and find his social links.",
   "og:url": "https://rajeshdavibbabu.com",
   "twitter:card":
     "https://res.cloudinary.com/dtshavwni/image/upload/v1680013098/home-illustration-small_wdsuej.webp",
