@@ -4,6 +4,7 @@ import SpringLoad from "~/components/SpringLoad";
 import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { imgSrcs } from "~/data/blogMetaData";
+import { NavLink } from "@remix-run/react";
 
 export default function Index() {
   const [isImageLoaded, setIsImageLoaded] = useState(false || isMobile);
@@ -34,6 +35,12 @@ export default function Index() {
             I like to write about Typescript, React, Node.js
             <br />
             and Software Architecture.
+          </p>
+        </StaggerChild>
+        <br />
+        <StaggerChild>
+          <p className="text-lg md:text-xl">
+            Read my <NavLink to={"/blog"}> Blog Posts</NavLink>.
           </p>
         </StaggerChild>
         <br />
@@ -77,7 +84,7 @@ export default function Index() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              codebase
+              Codebase
             </a>
             .
           </p>
