@@ -28,6 +28,7 @@ import stylesheet from "~/styles/tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "icon", type: "image/png", sizes: "196x196", href: "/favicon.png" },
 ];
 
 export const meta: MetaFunction = () => ({
