@@ -7,7 +7,7 @@ export interface Project {
 
 export const projectList: Array<Project> = [
   {
-    title: "A trendy online sock-shop",
+    title: "Online Sock-shop",
     description:
       "An online sock shop built with React, Chakra-ui, Vercel Serverless APIs and Stripe",
     link: "https://getyourfckingsocks.com",
@@ -19,7 +19,7 @@ export const projectList: Array<Project> = [
     link: "https://github.com/rajeshbabu-oviva/remix-mdx-blog",
   },
   {
-    title: "Code-split React i18n files",
+    title: "Code-split React i18n Files",
     description: "A quick project on how to code-split react i18n files",
     link: "https://github.com/rajeshbabu-oviva/react-i18n-codesplitting-locales",
   },
