@@ -13,6 +13,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import clsx from "clsx";
+import { Analytics } from "@vercel/analytics/react";
 
 import type { Theme } from "~/utils/theme-provider";
 import {
@@ -72,6 +73,7 @@ function App() {
         <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.theme)} />
       </head>
       <body className="bg-background text-text-primary dark:bg-d-background dark:text-d-text-primary">
+        <Analytics />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="relative mx-auto my-0 box-border flex w-full max-w-7xl flex-[1] flex-grow flex-col py-[1em] px-[2em]">
