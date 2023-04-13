@@ -1,0 +1,148 @@
+---
+meta:
+  title: Setup guide for React, Stripe and Vercel Template
+  description: An end-to-end setup guide for and online shop built using React, Stripe and Vercel.
+  "og:title": Setup guide for React, Stripe and Vercel Template
+  "og:description": An end-to-end setup guide for and online shop built using React, Stripe and Vercel.
+---
+
+## Introduction
+
+Welcome to the setup guide for the "React + Vercel + Stripe - Online Store", if you are only interested in the frontend setup then go straight to the _Setup Frontend Shop_ step. On the other hand, if you would like to set up your complete end-to-end online shop setup, please read through all the steps carefully.
+
+## Architecture
+
+![](https://res.cloudinary.com/dtshavwni/image/upload/v1681383133/Online_shop_architecture_krztri.png)_Architecuture_
+
+Our application architecture covers the entire user flow of the app, starting from the user placing the order to the order confirmation and invoice email sent to the customer. Let's break down the application flow further and split the responsibility of the architecture:
+
+- Frontend Shop
+
+  - Responsible for placing the order and sending it out.
+
+- Vercel Serverless API
+
+  - Responsible for collecting the ordered items and creating a checkout session
+  - Optionally, you could store initial shop and product data.
+  - Optionally, you could also save the order information in a database.
+
+- Stripe Checkout API
+
+  - Processes the checkout session and redirects the user to the payments portal.
+  - Confirms the payment and redirects the user to a success page.
+
+- Stripe Dashboard
+  - Consists of the order details and the address for each confirmed order.
+  - Sends out a confirmation email with invoice details to the customer.
+
+## Pre-requisites
+
+Before we continue further, you need to have the following:
+
+- Knowledge of React.js, Typescript and Chakra-ui.
+- A free account on [Vercel](https://vercel.com) and install their [CLI](https://vercel.com/docs/cli) and basic understanding of deployment.
+- A free account on [Stripe](https://stripe.com) and a basic understanding of the [pre-built checkout](https://stripe.com/docs/payments/checkout).
+
+So that you will be able to understand the _setup_ steps properly.
+
+## Setup Frontend Shop
+
+This project is an npm project on the frontend and is built with Webpack 5, the installation and local development process are pretty standard.
+
+```bash
+# cd into the root of the project and run
+npm install
+# for local development
+npm run serve
+```
+
+```bash
+# for production build
+npm run build
+```
+
+The production build command should spit out a build folder that contains all the frontend build artifacts that can be hosted on a CDN or Vercel.
+
+If you are deploying this to Vercel there is a _vercel.json_ file on the root of the project that has _Cache-control headers_ to cache your files with content-hash on the user's browser.
+
+_Pro-tip:_ The easiest way to deploy is to connect your Github account with Vercel and let Vercel [deploy](https://vercel.com/docs/concepts/deployments/overview) it automatically every time you have an update on your _master_ branch.
+
+## Setup Vercel Serverless API
+
+If you want to extend this into a full-stack project then we have an easier way to do this Vercel. In the root of the project create a folder called _api_. (In our case it's already created.)
+
+For example, api/hello.ts with a _default function export_ can be used as an API-call in your project. Vercel calls this [serverless ](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/node-js)function.
+
+In our case, we have already prepared a file under _api_ called create-checkout.ts with a default function export and this can be accessed in our frontend app via the following code under _/src/hooks/useCheckout.ts_
+
+```js
+const response = await fetch("/api/create-checkout", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ cartLineItems, isPickup }),
+});
+```
+
+We use this method to call the _stripe's checkout session API_ because we need to store the stripe's secret key on the server environment.
+
+You can extend this _api_ folder by creating more serverless functions as required.
+
+## Setup Stripe Dashboard
+
+Once you set up your Stripe account, you should be able to see Stripe's dashboard. This dashboard enables you to create your products, shipping rates, tax rates etc.
+
+You probably have to add all the required information here before proceeding.
+Stripe has some good documentation on this and it's pretty straightforward.
+
+![](https://res.cloudinary.com/dtshavwni/image/upload/v1681391330/dashboard_stripe_fsrbti.png)_Stripe dashboard overview_
+
+Inside the _products_ tab, you should be able to create the products you want to sell.
+
+> The _payments_ tab contains all the payments made and also the delivery addresses that are associated with each payment during the checkout. You can use it as an admin-dashboard to fullfill your orders.
+
+**_Note:_** Before we go to the next step make sure that you have at least one _product, shipping rates and tax rates_, although shipping rates and tax rates are optional, I would recommend creating them because our frontend application supports all of them.
+
+## Setup Stripe Checkout API
+
+The [pre-built checkout](https://stripe.com/docs/payments/checkout) gives the details of the API, but in our case, the _api/create-checkout.ts_ is already prepared with all the necessary information.
+
+And you only need to edit the api/_api/stripe-data.ts_ file with your relevant details to configure it to your stripe account:
+
+- shipping-rates & tax-rates
+  - can be created inside the products tab on stripe dashboard.
+- base-urls
+  - the respective URLs that you use to develop and deploy.
+- allowed countries
+  - countries that you would like to deliver the product to.
+- stripe-sk
+  - secret key that can be found on the stripe dashboard
+- price_id object
+
+  - consists of a unique client-id of your product and the relevant price_id of the product.
+  - eg:
+
+  ```js
+  { '12345': 'price_retrtre534635' }
+  ```
+
+  where 12345 indicates the unique-id used to identify products on the client-side shopping cart. And price_retrtre534635 is stripe price_id for that specific product.
+
+![](https://res.cloudinary.com/dtshavwni/image/upload/v1681390798/find_price_id_vi6ar1.png)_Price id on stripe_
+
+The rest of the code is pretty much self-explanatory inside _api/create-checkout.ts_.
+
+## Setup Payment Confirmation Emails
+
+This is pretty straightforward for checkout sessions. You just need to enable the settings here on your dashboard's [email settings](https://dashboard.stripe.com/settings/emails).
+
+## Deployment with Vercel
+
+Deployment with Vercel is super easy, if you had linked your Github project with Vercel you should be able to automatically kick off new deployment on every push/merge to your master branch.
+
+Vercel takes care of deploying and running your serverless APIs as long as they are part of the _api_ folder.
+
+## Further Reading
+
+[React/TS application architecture](https://www.rajeshdavidbabu.com/blog/modular-architecture-react-ts)

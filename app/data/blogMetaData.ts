@@ -90,6 +90,15 @@ export const blogList: Array<BlogList> = [
     pathName: "/blog/array-vs-map-vs-set-vs-object",
     readingTime: "8 min",
   },
+  {
+    slug: "setup-guide-react-stripe-template",
+    title: "Setup guide for React, Stripe and Vercel Template",
+    publishDate: "13 Apr 2023",
+    description:
+      "Setup guide for React, Stripe and Vercel Template. This is only applicable if you have bought my template.",
+    pathName: "/blog/setup-guide-react-stripe-template",
+    readingTime: "5 min",
+  },
 ];
 
 export const imgSrcs = {
