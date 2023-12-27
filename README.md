@@ -1,10 +1,9 @@
 # Remix MDX Blog 🚀
 
-A minimal remix blog built with the power of MDX and tailwindcss.
+My personal portfolio and blog built with the power of MDX and tailwindcss.
 
-![Screenshot](screenshot.png)
+<img width="1268" alt="Screenshot 2023-12-27 at 11 56 48" src="https://github.com/rajeshdavidbabu/personal-portfolio/assets/15684795/c98d26e8-ba9a-4de2-bd51-583815447128">
 
-## 👉 Check out the ✨ [Live Demo](https://remix-mdx-blog-ten.vercel.app/) ✨
 
 ## 👩‍🚀 Description
 
