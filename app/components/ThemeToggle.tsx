@@ -6,10 +6,12 @@ const themes = [Theme.LIGHT, Theme.DARK];
 export const ThemeToggle = () => {
   const [theme, setTheme] = useTheme();
 
-  function handleChange() {
-    setTheme((prevTheme) =>
-      prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
-    );
+  // Function to handle theme change
+
+  function handleChange(
+    selectedTheme: Theme | ((prevState: Theme | null) => Theme | null) | null
+  ) {
+    setTheme(selectedTheme);
   }
 
   const labelClass = "relative flex cursor-pointer items-center justify-center";
@@ -19,23 +21,29 @@ export const ThemeToggle = () => {
       {themes.map((t) => (
         <label
           key={t}
-          className={
+          className={`${labelClass} ${
             theme === t
-              ? `text-text-primary opacity-100 dark:text-d-text-primary ${labelClass}`
-              : labelClass
-          }
+              ? "border-b-2 border-text-primary text-text-primary opacity-100 dark:border-d-text-primary dark:text-d-text-primary"
+              : ""
+          }`}
+          onClick={() => handleChange(t)}
         >
-          <ThemeToggleIcon theme={t} checked={theme === t} />
-          <input
-            type="radio"
-            name="theme-toggle"
-            className="absolute inset-0 z-[-1] opacity-0"
-            checked={theme === t}
-            value={t}
-            title={`Use ${t} theme`}
-            aria-label={`Use ${t} theme`}
-            onChange={handleChange}
-          />
+          <div className="group">
+            <ThemeToggleIcon theme={t} checked={theme === t} />
+            <input
+              type="radio"
+              name="theme-toggle"
+              className="absolute inset-0 z-[-1] opacity-0"
+              checked={theme === t}
+              value={t}
+              title={`Use ${t} theme`}
+              aria-label={`Use ${t} theme`}
+              onChange={() => handleChange(t)}
+            />
+            {/* Hover Effect */}
+            {/* Black overlay for hover effect */}
+            <div className="absolute inset-0 rounded-[99em] bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-20"></div>
+          </div>
         </label>
       ))}
     </div>
