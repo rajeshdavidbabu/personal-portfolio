@@ -54,17 +54,9 @@ export default function Index() {
             >
               Linkedin
             </a>
-            {", "}
-            <a
-              href="https://twitter.com/razzmattazzz"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
-            </a>
             {" or "}
             <a
-              href="https://github.com/rajeshbabu-oviva"
+              href="https://github.com/rajeshdavidbabu"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -80,7 +72,7 @@ export default function Index() {
             <br />
             Check out the{" "}
             <a
-              href="https://github.com/rajeshbabu-oviva/remix-mdx-blog"
+              href="https://github.com/rajeshdavidbabu/remix-mdx-blog"
               target="_blank"
               rel="noopener noreferrer"
             >
