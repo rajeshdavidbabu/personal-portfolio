@@ -14,11 +14,8 @@ const NavLinks = () => {
       <NavLink to="/" prefetch="render" className={activeStyleCallback}>
         Home
       </NavLink>
-      <NavLink to="/blog" prefetch="render" className={activeStyleCallback}>
-        Blog
-      </NavLink>
-      <NavLink to="/projects" prefetch="render" className={activeStyleCallback}>
-        Projects
+      <NavLink to="/about" prefetch="render" className={activeStyleCallback}>
+        About
       </NavLink>
     </>
   );
@@ -59,16 +56,8 @@ const Nav = () => {
             Home
           </NavLink>
 
-          <NavLink to="/blog" prefetch="render" className={activeStyleCallback}>
-            Blog
-          </NavLink>
-
-          <NavLink
-            to="/projects"
-            prefetch="render"
-            className={activeStyleCallback}
-          >
-            Projects
+          <NavLink to="/about" prefetch="render" className={activeStyleCallback}>
+            About
           </NavLink>
         </div>
       )}

@@ -9,20 +9,6 @@ export const Footer = () => {
           rel="noopener noreferrer"
         >
           Linkedin
-        </a>{" "}
-        or{" "}
-        <a
-          href="https://twitter.com/razzmattazzz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Twitter
-        </a>
-        .
-        <br />
-        Powered by{" "}
-        <a href="https://remix.run/" target="_blank" rel="noopener noreferrer">
-          Remix
         </a>
         .
       </span>

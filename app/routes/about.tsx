@@ -4,13 +4,13 @@ import SpringLoad from "~/components/SpringLoad";
 import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 
-export default function Index() {
+export default function About() {
   const [isImageLoaded, setIsImageLoaded] = useState(false || isMobile);
   const [imgSrc, setImgSrc] = useState("");
 
   useEffect(() => {
     const img = new Image();
-    const imgSrc = "https://res.cloudinary.com/dtshavwni/image/upload/v1744121323/home-illustration_cruxik.png";
+    const imgSrc = "https://res.cloudinary.com/dtshavwni/image/upload/v1744122411/about_page_illustration_qoj30z.png";
 
     img.src = imgSrc;
 
@@ -24,59 +24,30 @@ export default function Index() {
     <div className="mx-0 my-[2em] flex min-h-[400px] flex-[1] items-center justify-between max-w-md:flex-col-reverse">
       <StaggerParent className="max-w-md:flex-[0 flex-[1] px-[1em] py-0 max-w-md:pb-[2em] max-w-md:text-center">
         <h1 className="mb-[0.5em] text-2xl font-bold leading-[1.3] md:text-4xl">
-          Hi there! I'm Raj.
+          About me.
         </h1>
+        
         <StaggerChild>
           <p className="text-lg md:text-xl">
-            I'm a software engineering leader.
-            <br />
-            I like to talk about Web Development, AI
-            <br />
-            and Software Architecture.
+            I am a software engineer based out of Berlin(Germany).
           </p>
         </StaggerChild>
         <br />
         <StaggerChild>
           <p className="text-lg md:text-xl">
-            Watch my videos on <a href="https://www.youtube.com/@raj_talks_tech" target="_blank" rel="noopener noreferrer">YouTube</a>.
+          I am passionate about building scalable and performant web and AI applications.
           </p>
         </StaggerChild>
         <br />
         <StaggerChild>
           <p className="text-lg md:text-xl">
-            Find me on{" "}
-            <a
-              href="https://www.linkedin.com/in/rajesh-babu-56270046/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Linkedin
-            </a>
-            {" or "}
-            <a
-              href="https://github.com/rajeshdavidbabu"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-            .
+          I am currently working as the Head of Engineering at <a href="https://www.traide.ai/" target="_blank" rel="noopener noreferrer">Traide</a>.
           </p>
         </StaggerChild>
         <br />
         <StaggerChild>
           <p className="text-lg md:text-xl">
-            Do you like my template ?
-            <br />
-            Check out the{" "}
-            <a
-              href="https://github.com/rajeshdavidbabu/remix-mdx-blog"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Codebase
-            </a>
-            .
+            You can reach me on <a href="mailto:rajeshdavid.b@gmail.com" target="_blank" rel="noopener noreferrer">my email</a>.
           </p>
         </StaggerChild>
       </StaggerParent>

@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
-    "@remix-run/node": "*",
-    "@remix-run/react": "*",
-    "@remix-run/serve": "*",
+    "@remix-run/node": "1.16.0",
+    "@remix-run/react": "1.16.0",
+    "@remix-run/serve": "1.16.0",
     "@vercel/analytics": "^0.1.11",
     "clsx": "^1.2.1",
     "etag": "^1.8.1",
@@ -25,8 +25,8 @@
     "remix-utils": "^6.0.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "*",
-    "@remix-run/eslint-config": "*",
+    "@remix-run/dev": "1.16.0",
+    "@remix-run/eslint-config": "1.16.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/etag": "^1.8.1",
     "@types/react": "^18.0.25",
